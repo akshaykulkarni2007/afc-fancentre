@@ -12,12 +12,19 @@ class Home extends Component {
     render() {
         return(
             <div>
+                {/* News Banner */}
                 <Banner 
                     img={"images/" + this.state.bannerImage} 
                     title={this.state.bannerTitle}
                     height="450px">
                     {this.state.bannerContent}
                 </Banner>
+
+                {/* Fixtures */}
+
+                {/* Stats */}
+
+                {/* Social */}
             </div>
         )
     }
