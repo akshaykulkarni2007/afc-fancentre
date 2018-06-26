@@ -1,54 +1,72 @@
 #homepage .section-title {
-  text-align: center;
-  margin: 2rem auto;
-  color: red;
+	text-align: center;
+	margin: 2rem auto;
+	color: red;
 }
 #homepage .fixtures-box {
-    position: relative;
-    border-bottom: 1px solid #000;
-    border-top: 1px solid #000;
+	position: relative;
+	border-bottom: 1px solid #000;
+	border-top: 1px solid #000;
 }
 #homepage .red-box {
-  background: rgb(254, 0, 12);
-  color: #fff;
+	background: rgb(254, 0, 12);
+	color: #fff;
 }
 #homepage .black-box {
-  background: #000;
-  color: #fff;
-  border: 1px solid #000;
+	background: #000;
+	color: #fff;
+	border: 1px solid #000;
 }
 #homepage .white-box {
-  background: #fff;
-  color: #000;
+	background: #fff;
+	color: #000;
 }
 #homepage .white-box table {
-    margin-bottom: 3.2rem;
+	margin-bottom: 3.2rem;
 }
 
 #homepage .fixtures-link {
-  display: block;
-  padding: 1rem 0;
-  text-decoration: none;
-  position: absolute;
-  bottom: 0;
-  width: 100%;
-  transition: all 0.5s ease-in-out;
+	display: block;
+	padding: 1rem 0;
+	text-decoration: none;
+	position: absolute;
+	bottom: 0;
+	width: 100%;
+	transition: all 0.5s ease-in-out;
 }
-#homepage .red-box .fixtures-link,
+#homepage .red-box .fixtures-link {
+	color: rgb(254, 0, 12);
+	background: rgb(255, 255, 255);
+}
+#homepage .red-box .fixtures-link:hover {
+	background: #000;
+	color: #fff;
+}
+#homepage .black-box .fixtures-link,
 #homepage .white-box .fixtures-link {
-  color: rgb(254, 0, 12);
-  background: rgb(255, 255, 255);
+	background: #fff;
+	color: #000;
 }
-#homepage .red-box .fixtures-link:hover,
+#homepage .black-box .fixtures-link:hover,
 #homepage .white-box .fixtures-link:hover {
-  background: #000;
-  color: #fff;
+	background: rgb(254, 0, 12);
+	color: #fff;
 }
-#homepage .black-box .fixtures-link {
-  background: #fff;
-  color: #000;
+
+#homepage th {
+	color: #000;
 }
-#homepage .black-box .fixtures-link:hover {
-  background: rgb(254, 0, 12);
-  color: #fff;
+#homepage tr.arsenal td {
+	background: rgb(254, 0, 12);
+	color: white;
+	font-weight: bold;
+}
+
+#home-stats .stat-type {
+	padding: 0;
+}
+#home-stats .stat-type h2 {
+	background: rgb(254, 0, 12);
+	color: white;
+	margin: 0;
 }
