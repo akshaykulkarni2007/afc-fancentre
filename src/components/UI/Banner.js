@@ -1,8 +1,7 @@
 import React from 'react';
 
 
-function Banner(props) {
-
+const Banner = props => {
     const styles = {
         backgroundImg: {
             backgroundImage: `url(${props.img})`,

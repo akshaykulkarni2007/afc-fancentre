@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 
 import './App.css';
 
-import Navigation from "./common/Navigation"
+import Navigation from './common/Navigation'
+import Footer from './common/Footer'
 import Home from './Homepage/Home'
 
 class App extends Component {
@@ -11,6 +12,7 @@ class App extends Component {
       <div>
         <Navigation />
         <Home/>
+        <Footer />
       </div>
     );
   }

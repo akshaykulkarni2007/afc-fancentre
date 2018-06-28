@@ -28,7 +28,7 @@ const styles = theme => ({
 	}
 });
 
-function ImageGrid(props) {
+const ImageGrid = props => {
 	const { classes } = props;
 
 	return (
