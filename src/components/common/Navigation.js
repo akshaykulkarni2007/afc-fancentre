@@ -42,7 +42,7 @@ const Navigation = props => {
 						<MenuIcon />
 					</IconButton>
 					<Typography variant="title" color="inherit" className={classes.flex}>
-						AFC Fan Centre
+						Arsenal Fan Centre
 					</Typography>
 					<Button color="inherit">Home</Button>
 					<Button color="inherit">Players</Button>
