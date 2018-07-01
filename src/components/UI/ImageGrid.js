@@ -31,11 +31,18 @@ const styles = theme => ({
 const ImageGrid = props => {
 	const { classes } = props;
 
+	let cols = 1
+	if(window.innerWidth < 960 && window.innerWidth > 600) {
+		cols = 2
+	} else if(window.innerWidth < 600) {
+		cols = 4
+	}
+
 	return (
 		<div className={classes.root}>
 			<GridList cols={4} cellHeight={350} className={classes.gridList}>
 				{props.content.map(item => (
-					<GridListTile key={item.number}>
+					<GridListTile key={item.number} cols={cols}>
 						<ListSubheader component="div" className="stat-type">
 							<h2>{item.statName} ({item.statNumber})</h2>
 						</ListSubheader>

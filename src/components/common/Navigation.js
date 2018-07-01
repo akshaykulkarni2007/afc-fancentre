@@ -5,6 +5,7 @@ import PropTypes from "prop-types"
 import {
 	withStyles,
 	AppBar,
+	Hidden,
 	Toolbar,
 	Typography,
 	Button,
@@ -35,21 +36,25 @@ const Navigation = props => {
 		<div className={classes.root}>
 			<AppBar position="static" style={styles.background}>
 				<Toolbar>
-					<IconButton
-						className={classes.menuButton}
-						color="inherit"
-						aria-label="Menu">
-						<MenuIcon />
-					</IconButton>
+					<Hidden lgUp>
+						<IconButton
+							className={classes.menuButton}
+							color="inherit"
+							aria-label="Menu">
+							<MenuIcon />
+						</IconButton>
+					</Hidden>
 					<Typography variant="title" color="inherit" className={classes.flex}>
 						Arsenal Fan Centre
 					</Typography>
-					<Button color="inherit">Home</Button>
-					<Button color="inherit">Players</Button>
-					<Button color="inherit">Club</Button>
-					<Button color="inherit">Fans</Button>
-					<Button color="inherit">About</Button>
-					<Button color="inherit">Login</Button>
+					<Hidden mdDown>
+						<Button color="inherit">Home</Button>
+						<Button color="inherit">Players</Button>
+						<Button color="inherit">Club</Button>
+						<Button color="inherit">Fans</Button>
+						<Button color="inherit">About</Button>
+						<Button color="inherit">Login</Button>
+					</Hidden>
 				</Toolbar>
 			</AppBar>
 		</div>

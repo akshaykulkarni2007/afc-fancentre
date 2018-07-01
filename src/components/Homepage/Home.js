@@ -104,7 +104,7 @@ class Home extends Component {
 					<Banner
 						img={"images/" + this.state.banner.image}
 						title={this.state.banner.title}
-						height="450px"
+						height="650px"
 					>
 						{this.state.banner.content}
 					</Banner>
