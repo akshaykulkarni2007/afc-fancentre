@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component } from "react"
 
 // Material
 import {
@@ -10,14 +10,14 @@ import {
 	TableCell,
 	TableHead,
 	TableRow
-} from "@material-ui/core";
+} from "@material-ui/core"
 
 // Custom Components
-import Banner from "../UI/Banner";
-import ImageGrid from "../UI/ImageGrid";
+import Banner from "../UI/Banner"
+import ImageGrid from "../UI/ImageGrid"
 
 // CSS
-import "./Home.css";
+import "./Home.css"
 
 const styles = theme => ({
 	root: {
@@ -30,7 +30,7 @@ const styles = theme => ({
 		height: "100%",
 		color: theme.palette.text.secondary
 	}
-});
+})
 
 class Home extends Component {
 	state = {
@@ -85,17 +85,26 @@ class Home extends Component {
 				statNumber: "10"
 			}
 		]
-	};
+	}
 
 	render() {
-		const { classes } = this.props;
+		const { classes } = this.props
 
 		const prevMatchVenueType = this.state.fixtures.previous.venue
 				.split("/")[0]
 				.toLowerCase(),
 			nextMatchVenueType = this.state.fixtures.next.venue
 				.split("/")[0]
-				.toLowerCase();
+				.toLowerCase()
+
+		let gridItems = this.state.playerStats.map(player => (
+			<div
+				key={player.number}
+				subHeader={`${player.statName} (${player.statNumber})`}
+				image={player.image}
+				title={`${player.number} ${player.name}`}
+			/>
+		))
 
 		return (
 			<div id="homepage">
@@ -104,8 +113,7 @@ class Home extends Component {
 					<Banner
 						img={"images/" + this.state.banner.image}
 						title={this.state.banner.title}
-						height="650px"
-					>
+						height="650px">
 						{this.state.banner.content}
 					</Banner>
 				</section>
@@ -206,9 +214,8 @@ class Home extends Component {
 					<Typography variant="display2" className="section-title">
 						Season So Far
 					</Typography>
-					<div className={classes.root}>
-						<ImageGrid content={this.state.playerStats} />
-					</div>
+
+					<ImageGrid content={gridItems} />
 				</section>
 
 				{/* Social */}
@@ -223,8 +230,8 @@ class Home extends Component {
 				<br />
 				<br />
 			</div>
-		);
+		)
 	}
 }
 
-export default withStyles(styles)(Home);
+export default withStyles(styles)(Home)

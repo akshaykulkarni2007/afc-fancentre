@@ -1,4 +1,4 @@
-import React from "react";
+import React from "react"
 
 // Material
 import {
@@ -7,15 +7,16 @@ import {
 	GridListTile,
 	GridListTileBar,
 	ListSubheader
-} from "@material-ui/core";
+} from "@material-ui/core"
 
 const styles = theme => ({
-	root: {
+	gridListParent: {
 		display: "flex",
 		flexWrap: "wrap",
 		justifyContent: "space-around",
 		overflow: "hidden",
-		backgroundColor: theme.palette.background.paper
+		backgroundColor: theme.palette.background.paper,
+		textAlign: "center"
 	},
 	gridList: {
 		margin: 0
@@ -26,39 +27,35 @@ const styles = theme => ({
 	subheader: {
 		width: "100%"
 	}
-});
+})
 
 const ImageGrid = props => {
-	const { classes } = props;
+	const { classes } = props
 
 	let cols = 1
-	if(window.innerWidth < 960 && window.innerWidth > 600) {
+	if (window.innerWidth < 960 && window.innerWidth > 600) {
 		cols = 2
-	} else if(window.innerWidth < 600) {
+	} else if (window.innerWidth < 600) {
 		cols = 4
 	}
 
 	return (
-		<div className={classes.root}>
+		<div className={classes.gridListParent}>
 			<GridList cols={4} cellHeight={350} className={classes.gridList}>
 				{props.content.map(item => (
-					<GridListTile key={item.number} cols={cols}>
+					<GridListTile cols={cols} key={item.key}>
 						<ListSubheader component="div" className="stat-type">
-							<h2>{item.statName} ({item.statNumber})</h2>
+							<h2>{item.props.subHeader}</h2>
 						</ListSubheader>
-						<img src={"images/" + item.image} alt={item.name} />
+						<img src={"images/" + item.props.image} alt={item.props.name} />
 						<GridListTileBar
-							title={
-								<span className={classes.title}>
-									{item.number} {item.name}
-								</span>
-							}
+							title={<span className={classes.title}>{item.props.title}</span>}
 						/>
 					</GridListTile>
 				))}
 			</GridList>
 		</div>
-	);
+	)
 }
 
-export default withStyles(styles)(ImageGrid);
+export default withStyles(styles)(ImageGrid)
