@@ -1,21 +1,32 @@
-import React, { Component } from 'react';
+import React, { Component } from "react"
+import { BrowserRouter as Router, Route } from "react-router-dom"
 
-import './App.css';
+// CSS
+import "./App.css"
 
-import Navigation from './common/Navigation'
-import Footer from './common/Footer'
-import Home from './Homepage/Home'
+// Components
+import Navigation from "./common/Navigation"
+import Footer from "./common/Footer"
+import Home from "./Homepage/Home"
+import Login from "./Auth/Login"
+import PlayerList from "./Players/PlayerList"
+import About from "./About/About"
 
 class App extends Component {
-  render() {
-    return (
-      <div>
-        <Navigation />
-        <Home/>
-        <Footer />
-      </div>
-    );
-  }
+	render() {
+		return (
+			<Router>
+				<div className="app">
+					<Navigation />
+					<Route exact path="/" component={Home} />
+					<Route exact path="/players" component={PlayerList} />
+					<Route exact path="/about" component={About} />
+					<Route exact path="/login" component={Login} />
+					<Footer />
+				</div>
+			</Router>
+		)
+	}
 }
 
-export default App;
+export default App

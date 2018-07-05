@@ -1,5 +1,6 @@
 import React from "react"
 import PropTypes from "prop-types"
+import { Link } from "react-router-dom"
 
 // Material
 import {
@@ -48,12 +49,20 @@ const Navigation = props => {
 						Arsenal Fan Centre
 					</Typography>
 					<Hidden mdDown>
-						<Button color="inherit">Home</Button>
-						<Button color="inherit">Players</Button>
+						<Button color="inherit">
+							<Link to="/">Home</Link>
+						</Button>
+						<Button color="inherit">
+							<Link to="/players">Players</Link>
+						</Button>
 						<Button color="inherit">Club</Button>
 						<Button color="inherit">Fans</Button>
-						<Button color="inherit">About</Button>
-						<Button color="inherit">Login</Button>
+						<Button color="inherit">
+							<Link to="/about">About</Link>
+						</Button>
+						<Button color="inherit">
+							<Link to="/login">Login</Link>
+						</Button>
 					</Hidden>
 				</Toolbar>
 			</AppBar>

@@ -22,3 +22,19 @@
 
 						padding-left: 0;
     padding-right: 0;
+
+
+
+<Button color="inherit">Club</Button>
+<Link to="/current-season">The Season</Link>
+<Link to="/history">History</Link>
+<Link to="/records">Records</Link>
+<Link to="/eras">Eras</Link>
+<Link to="/gallery">Gallery</Link>
+
+
+<Button color="inherit">Fans</Button>
+<Link to="/messages">Messages</Link>
+<Link to="/polls">Polls</Link>
+<Link to="/gallery">Gallery</Link>
+<Link to="/local-supporters">Local Supporters Clubs</Link>
