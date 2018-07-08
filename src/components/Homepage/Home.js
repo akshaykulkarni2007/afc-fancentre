@@ -29,6 +29,10 @@ const styles = theme => ({
 		padding: theme.spacing.unit * 2,
 		height: "100%",
 		color: theme.palette.text.secondary
+	},
+	tableParent: {
+		width: '100%',
+    overflowX: 'auto'
 	}
 })
 
@@ -163,44 +167,48 @@ class Home extends Component {
 							</Grid>
 							<Grid item xs={12} md={4} className="fixtures-box white-box">
 								<h2>Table</h2>
-								<Table className={classes.table}>
-									<TableHead>
-										<TableRow>
-											<TableCell>#</TableCell>
-											<TableCell>Team</TableCell>
-											<TableCell>+/-</TableCell>
-											<TableCell>Points</TableCell>
-										</TableRow>
-									</TableHead>
-									<TableBody>
-										<TableRow>
-											<TableCell component="td" scope="row">
-												1
-											</TableCell>
-											<TableCell>Bournmouth</TableCell>
-											<TableCell>0</TableCell>
-											<TableCell>0</TableCell>
-										</TableRow>
+								<div className={classes.tableParent}>
+									<Table
+										className={classes.table}
+										style={{ maxWidth: 100 + "%" }}>
+										<TableHead>
+											<TableRow>
+												<TableCell>#</TableCell>
+												<TableCell>Team</TableCell>
+												<TableCell>+/-</TableCell>
+												<TableCell>Points</TableCell>
+											</TableRow>
+										</TableHead>
+										<TableBody>
+											<TableRow>
+												<TableCell component="td" scope="row">
+													1
+												</TableCell>
+												<TableCell>Bournmouth</TableCell>
+												<TableCell>0</TableCell>
+												<TableCell>0</TableCell>
+											</TableRow>
 
-										<TableRow className="arsenal">
-											<TableCell component="td" scope="row">
-												2
-											</TableCell>
-											<TableCell>Arsenal</TableCell>
-											<TableCell>0</TableCell>
-											<TableCell>0</TableCell>
-										</TableRow>
+											<TableRow className="arsenal">
+												<TableCell component="td" scope="row">
+													2
+												</TableCell>
+												<TableCell>Arsenal</TableCell>
+												<TableCell>0</TableCell>
+												<TableCell>0</TableCell>
+											</TableRow>
 
-										<TableRow>
-											<TableCell component="td" scope="row">
-												3
-											</TableCell>
-											<TableCell>Brighton</TableCell>
-											<TableCell>0</TableCell>
-											<TableCell>0</TableCell>
-										</TableRow>
-									</TableBody>
-								</Table>
+											<TableRow>
+												<TableCell component="td" scope="row">
+													3
+												</TableCell>
+												<TableCell>Brighton</TableCell>
+												<TableCell>0</TableCell>
+												<TableCell>0</TableCell>
+											</TableRow>
+										</TableBody>
+									</Table>
+								</div>
 								<a href="#!" className="fixtures-link">
 									View Full Table
 								</a>

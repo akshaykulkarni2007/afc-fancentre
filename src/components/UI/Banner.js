@@ -1,6 +1,5 @@
 import React from 'react';
 
-
 const Banner = props => {
     const styles = {
         backgroundImg: {
@@ -24,7 +23,7 @@ const Banner = props => {
     }
 
     return(
-        <div style={styles.backgroundImg}>
+        <div className='banner-background' style={styles.backgroundImg}>
             <h1 style={styles.title}>{props.title}</h1>
             <h4 style={styles.content}>{props.children}</h4>
         </div>

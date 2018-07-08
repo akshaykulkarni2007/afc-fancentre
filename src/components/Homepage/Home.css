@@ -11,6 +11,7 @@
 #homepage .red-box {
 	background: rgb(254, 0, 12);
 	color: #fff;
+	border-right: 1px solid rgb(254, 0, 12);
 }
 #homepage .black-box {
 	background: #000;
@@ -69,4 +70,10 @@
 	background: rgb(254, 0, 12);
 	color: white;
 	margin: 0;
+}
+
+@media (max-width: 960px) {
+	.banner-background {
+		background-position: center;
+	}
 }
