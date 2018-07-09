@@ -31,8 +31,8 @@ const styles = theme => ({
 		color: theme.palette.text.secondary
 	},
 	tableParent: {
-		width: '100%',
-    overflowX: 'auto'
+		width: "100%",
+		overflowX: "auto"
 	}
 })
 
@@ -132,11 +132,7 @@ class Home extends Component {
 							<Grid item xs={12} md={4} className="fixtures-box black-box">
 								<h2>Previous Match</h2>
 								<h4>{this.state.fixtures.previous.date.toDateString()}</h4>
-								<h5>
-									{this.state.fixtures.previous.tournament} /{" "}
-									{this.state.fixtures.previous.venue.split("/")[1]}
-								</h5>
-								<h4>
+								<h2>
 									{prevMatchVenueType === "home"
 										? `Arsenal ${this.state.fixtures.previous.scoreline} ${
 												this.state.fixtures.previous.opponent
@@ -144,7 +140,11 @@ class Home extends Component {
 										: `${this.state.fixtures.previous.opponent} ${
 												this.state.fixtures.previous.scoreline
 										  } Arsenal`}
-								</h4>
+								</h2>
+								<h5>
+									{this.state.fixtures.previous.tournament} /{" "}
+									{this.state.fixtures.previous.venue.split("/")[1]}
+								</h5>
 								<a href="#!" className="fixtures-link">
 									Analysis and Reactions
 								</a>
@@ -152,15 +152,15 @@ class Home extends Component {
 							<Grid item xs={12} md={4} className="fixtures-box red-box">
 								<h2>Next Match</h2>
 								<h4>{this.state.fixtures.next.date.toDateString()}</h4>
+								<h2>
+									{nextMatchVenueType === "home"
+										? `Arsenal vs ${this.state.fixtures.next.opponent}`
+										: `${this.state.fixtures.next.opponent} vs Arsenal`}
+								</h2>
 								<h5>
 									{this.state.fixtures.next.tournament} /{" "}
 									{this.state.fixtures.next.venue.split("/")[1]}
 								</h5>
-								<h4>
-									{nextMatchVenueType === "home"
-										? `Arsenal vs ${this.state.fixtures.next.opponent}`
-										: `${this.state.fixtures.next.opponent} vs Arsenal`}
-								</h4>
 								<a href="#!" className="fixtures-link ">
 									Fixtures
 								</a>

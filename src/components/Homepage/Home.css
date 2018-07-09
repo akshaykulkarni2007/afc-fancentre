@@ -1,10 +1,15 @@
+#homepage h4, h5 {
+	font-weight: normal;
+}
 #homepage .section-title {
 	text-align: center;
 	margin: 2rem auto;
 	color: rgb(254, 0, 12);
 }
 #homepage .fixtures-box {
-	position: relative;
+	display: flex;
+	flex-direction: column;
+	justify-content: space-between;
 	border-bottom: 1px solid #000;
 	border-top: 1px solid #000;
 }
@@ -22,16 +27,13 @@
 	background: #fff;
 	color: #000;
 }
-#homepage .white-box table {
-	margin-bottom: 3.2rem;
-}
 
 #homepage .fixtures-link {
 	display: block;
 	padding: 1rem 0;
 	text-decoration: none;
-	position: absolute;
-	bottom: 0;
+	/* position: absolute;
+	bottom: 0; */
 	width: 100%;
 	transition: all 0.5s ease-in-out;
 }
@@ -70,10 +72,27 @@
 	background: rgb(254, 0, 12);
 	color: white;
 	margin: 0;
+	font-weight: normal;
 }
 
 @media (max-width: 960px) {
 	.banner-background {
 		background-position: center;
 	}
+
+	#homepage .fixtures-box {
+		border: none;
+	}
+	#homepage .black-box,
+	#homepage .white-box {
+		margin-bottom: 4px;
+		border: none;
+		border-bottom: 1px solid #000;
+	}
+	#homepage .red-box {
+		border: none;
+		border-bottom: 1px solid rgb(254, 0, 12);
+	}
+
 }
+
