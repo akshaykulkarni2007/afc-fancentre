@@ -1,11 +1,11 @@
-import React from "react"
+import React, { Component } from "react"
+import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 
 // Material
 import {
 	withStyles,
 	Drawer,
-	Button,
 	List,
 	ListItem,
 	ListItemText,
@@ -16,29 +16,17 @@ import { ExpandLess, ExpandMore } from "@material-ui/icons"
 
 const styles = {
 	list: {
-		width: 250
+    width: 250
 	},
 	fullList: {
 		width: "auto"
+	},
+	link: {
+		color: "rgb(254, 0, 12) !important"
 	}
 }
 
-class TemporaryDrawer extends React.Component {
-	state = {
-		left: false,
-		open: true
-	}
-
-	toggleDrawer = (side, open) => () => {
-		this.setState({
-			[side]: open
-		})
-	}
-
-	handleClick = () => {
-		this.setState(state => ({ open: !state.open }))
-	}
-
+class TemporaryDrawer extends Component {
 	render() {
 		const { classes } = this.props
 
@@ -46,43 +34,52 @@ class TemporaryDrawer extends React.Component {
 			<div className={classes.list}>
 				<List component="nav">
 					<ListItem button>
-						<ListItemText inset primary="Sent mail" />
+						<ListItemText inset primary={<Link to="/" className={classes.link}>Home</Link>} />
 					</ListItem>
 					<ListItem button>
-						<ListItemText inset primary="Sent mail" />
+						<ListItemText inset primary={<Link to="/players" className={classes.link}>Players</Link>} />
 					</ListItem>
 					<ListItem button>
-						<ListItemText inset primary="Sent mail" />
+						<ListItemText inset primary={<Link to="/" className={classes.link}>Club</Link>} />
+					</ListItem>
+          <ListItem button>
+						<ListItemText inset primary={<Link to="/" className={classes.link}>Fans</Link>} />
+					</ListItem>
+          <ListItem button>
+						<ListItemText inset primary={<Link to="/about" className={classes.link}>About</Link>} />
+					</ListItem>
+          <ListItem button>
+						<ListItemText inset primary={<Link to="/login" className={classes.link}>Login</Link>} />
 					</ListItem>
 				</List>
 
-				<Divider />
+				{/* <Divider />
 
-				<ListItem button onClick={this.handleClick}>
+				<ListItem button onClick={this.props.handleCollapse}>
 					<ListItemText inset primary="Inbox" />
-					{this.state.open ? <ExpandLess /> : <ExpandMore />}
+					{this.props.open ? <ExpandLess /> : <ExpandMore />}
 				</ListItem>
-				<Collapse in={this.state.open} timeout="auto" unmountOnExit>
+				<Collapse in={this.props.open} timeout="auto" unmountOnExit>
 					<List component="div" disablePadding>
 						<ListItem button className={classes.nested}>
 							<ListItemText inset primary="Starred" />
 						</ListItem>
 					</List>
-				</Collapse>
+				</Collapse> */}
+        
 			</div>
 		)
-
+		console.log(this.props)
 		return (
 			<div>
-				<Button onClick={this.toggleDrawer("left", true)}>Open Left</Button>
 				<Drawer
-					open={this.state.left}
-					onClose={this.toggleDrawer("left", false)}>
+					open={this.props.left}
+					onClose={this.props.toggleDrawer("left", false)}>
 					<div
 						tabIndex={0}
 						role="button"
-						onClick={this.toggleDrawer("left", false)}
-						onKeyDown={this.toggleDrawer("left", false)}>
+						onClick={this.props.toggleDrawer("left", false)}
+						onKeyDown={this.props.toggleDrawer("left", false)}>
 						{sideList}
 					</div>
 				</Drawer>

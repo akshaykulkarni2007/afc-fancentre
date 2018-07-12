@@ -15,6 +15,11 @@ import {
 import MenuIcon from "@material-ui/icons/Menu"
 
 class Navigation extends Component {
+	state = {
+		left: false,
+		collapseOpen: true
+	}
+
 	styles = {
 		root: {
 			flexGrow: 1
@@ -31,22 +36,41 @@ class Navigation extends Component {
 		}
 	}
 
+	toggleDrawer = (side, open) => () => {
+		this.setState({
+			[side]: open
+		})
+	}
+
+	handleCollapse = () => {
+		this.setState(state => ({ collapseOpen: !state.collapseOpen }))
+	}
+
 	render() {
 		return (
 			<div className={this.styles.root}>
-				<Drawer />
+				<Drawer
+					open={this.state.collapseOpen}
+					left={this.state.left}
+					toggleDrawer={this.toggleDrawer}
+					handleCollapse={this.handleCollapse}
+				/>
 				<AppBar position="static" style={this.styles.background}>
 					<Toolbar>
 						<Hidden lgUp>
-							<IconButton
-								style={this.styles.menuButton}
-								color="inherit"
-								aria-label="Menu">
-								<MenuIcon />
-							</IconButton>
+						<IconButton
+							style={this.styles.menuButton}
+							color="inherit"
+							onClick={this.toggleDrawer("left", true)}
+							aria-label="Menu">
+							<MenuIcon />
+						</IconButton>
 						</Hidden>
-						<Typography variant="title" color="inherit" style={this.styles.flex}>
-							Arsenal Fan Centre
+						<Typography
+							variant="title"
+							color="inherit"
+							style={this.styles.flex}>
+							<Link to="/">Arsenal Fan Centre</Link>
 						</Typography>
 						<Hidden mdDown>
 							<Button color="inherit">
@@ -69,7 +93,6 @@ class Navigation extends Component {
 			</div>
 		)
 	}
-	
 }
 
 export default Navigation
