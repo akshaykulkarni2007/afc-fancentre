@@ -6,7 +6,6 @@ import "./App.css"
 
 // Components
 import Navigation from "./Common/Navigation"
-import Drawer from "./Common/Drawer"
 import Footer from "./Common/Footer"
 import Home from "./Homepage/Home"
 import Login from "./Auth/Login"
@@ -19,7 +18,6 @@ class App extends Component {
 			<Router>
 				<div className="app">
 					<Navigation />
-					<Drawer />
 					<Route exact path="/" component={Home} />
 					<Route exact path="/players" component={PlayerList} />
 					<Route exact path="/about" component={About} />
