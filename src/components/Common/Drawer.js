@@ -69,7 +69,7 @@ class TemporaryDrawer extends Component {
         
 			</div>
 		)
-		console.log(this.props)
+
 		return (
 			<div>
 				<Drawer
