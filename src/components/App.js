@@ -5,8 +5,9 @@ import { BrowserRouter as Router, Route } from "react-router-dom"
 import "./App.css"
 
 // Components
-import Navigation from "./common/Navigation"
-import Footer from "./common/Footer"
+import Navigation from "./Common/Navigation"
+import Drawer from "./Common/Drawer"
+import Footer from "./Common/Footer"
 import Home from "./Homepage/Home"
 import Login from "./Auth/Login"
 import PlayerList from "./Players/PlayerList"
@@ -18,6 +19,7 @@ class App extends Component {
 			<Router>
 				<div className="app">
 					<Navigation />
+					<Drawer />
 					<Route exact path="/" component={Home} />
 					<Route exact path="/players" component={PlayerList} />
 					<Route exact path="/about" component={About} />
