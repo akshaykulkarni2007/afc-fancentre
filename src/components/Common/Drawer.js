@@ -33,27 +33,27 @@ class TemporaryDrawer extends Component {
 		const sideList = (
 			<div className={classes.list}>
 				<List component="nav">
-					<ListItem button>
+					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/" className={classes.link}>Home</Link>} />
 					</ListItem>
-					<ListItem button>
+					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/players" className={classes.link}>Players</Link>} />
 					</ListItem>
-					<ListItem button>
+					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/" className={classes.link}>Club</Link>} />
 					</ListItem>
-          <ListItem button>
+          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/" className={classes.link}>Fans</Link>} />
 					</ListItem>
-          <ListItem button>
+          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/about" className={classes.link}>About</Link>} />
 					</ListItem>
-          <ListItem button>
+          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
 						<ListItemText inset primary={<Link to="/login" className={classes.link}>Login</Link>} />
 					</ListItem>
 				</List>
 
-				{/* <Divider />
+				<Divider />
 
 				<ListItem button onClick={this.props.handleCollapse}>
 					<ListItemText inset primary="Inbox" />
@@ -61,11 +61,11 @@ class TemporaryDrawer extends Component {
 				</ListItem>
 				<Collapse in={this.props.open} timeout="auto" unmountOnExit>
 					<List component="div" disablePadding>
-						<ListItem button className={classes.nested}>
+						<ListItem button className={classes.nested} onClick={this.props.toggleDrawer("left", false)}>
 							<ListItemText inset primary="Starred" />
 						</ListItem>
 					</List>
-				</Collapse> */}
+				</Collapse>
         
 			</div>
 		)
@@ -78,7 +78,7 @@ class TemporaryDrawer extends Component {
 					<div
 						tabIndex={0}
 						role="button"
-						onClick={this.props.toggleDrawer("left", false)}
+						
 						onKeyDown={this.props.toggleDrawer("left", false)}>
 						{sideList}
 					</div>
