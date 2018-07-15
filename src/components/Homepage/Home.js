@@ -46,17 +46,17 @@ class Home extends Component {
 		},
 		fixtures: {
 			previous: {
-				opponent: "Huddersfield Town",
-				tournament: "Premier League",
-				venue: "away/The John Smith's Stadium",
-				date: new Date(2018, 5, 13),
-				scoreline: "0-1"
-			},
-			next: {
 				opponent: "Boreham Wood",
 				tournament: "Pre-Season Friendly",
 				venue: "away/Meadow Park",
-				date: new Date(2018, 7, 14)
+				date: new Date(2018, 7, 14),
+				scoreline: "0-8"
+			},
+			next: {
+				opponent: "Atletico Madrid",
+				tournament: "International Champions Cup",
+				venue: "home/Emirates Stadium",
+				date: new Date(2018, 7, 26)
 			}
 		},
 		playerStats: [
