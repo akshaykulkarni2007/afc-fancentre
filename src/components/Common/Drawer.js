@@ -16,7 +16,7 @@ import { ExpandLess, ExpandMore } from "@material-ui/icons"
 
 const styles = {
 	list: {
-    width: 250
+		width: 250
 	},
 	fullList: {
 		width: "auto"
@@ -30,43 +30,47 @@ class TemporaryDrawer extends Component {
 	render() {
 		const { classes } = this.props
 
+		const menu = this.props.navItems.map(
+			item =>
+				!Array.isArray(item.subItems) ? (
+					<ListItem
+						key={item.title}
+						button
+						onClick={this.props.toggleDrawer("left", false)}>
+						<ListItemText
+							inset
+							primary={
+								<Link to={item.link} className={classes.link}>
+									{item.title}
+								</Link>
+							}
+						/>
+					</ListItem>
+				) : (
+					""
+				)
+		)
+
 		const sideList = (
 			<div className={classes.list}>
-				<List component="nav">
-					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/" className={classes.link}>Home</Link>} />
-					</ListItem>
-					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/players" className={classes.link}>Players</Link>} />
-					</ListItem>
-					<ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/" className={classes.link}>Club</Link>} />
-					</ListItem>
-          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/" className={classes.link}>Fans</Link>} />
-					</ListItem>
-          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/about" className={classes.link}>About</Link>} />
-					</ListItem>
-          <ListItem button onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText inset primary={<Link to="/login" className={classes.link}>Login</Link>} />
-					</ListItem>
-				</List>
+				<List component="nav">{menu}</List>
 
 				<Divider />
 
-				<ListItem button onClick={this.props.handleCollapse}>
+				{/* <ListItem button onClick={this.props.handleCollapse}>
 					<ListItemText inset primary="Inbox" />
 					{this.props.open ? <ExpandLess /> : <ExpandMore />}
 				</ListItem>
 				<Collapse in={this.props.open} timeout="auto" unmountOnExit>
 					<List component="div" disablePadding>
-						<ListItem button className={classes.nested} onClick={this.props.toggleDrawer("left", false)}>
+						<ListItem
+							button
+							className={classes.nested}
+							onClick={this.props.toggleDrawer("left", false)}>
 							<ListItemText inset primary="Starred" />
 						</ListItem>
 					</List>
-				</Collapse>
-        
+				</Collapse> */}
 			</div>
 		)
 
@@ -78,7 +82,6 @@ class TemporaryDrawer extends Component {
 					<div
 						tabIndex={0}
 						role="button"
-						
 						onKeyDown={this.props.toggleDrawer("left", false)}>
 						{sideList}
 					</div>

@@ -16,6 +16,14 @@ import MenuIcon from "@material-ui/icons/Menu"
 
 class Navigation extends Component {
 	state = {
+		navItems: [
+			{ title: "Home", link: "/", subItems: "" },
+			{ title: "Players", link: "/players", subItems: "" },
+			{ title: "Club", link: "", subItems: ["one", "two"] },
+			{ title: "Fans", link: "", subItems: ["one", "two"] },
+			{ title: "About", link: "/about", subItems: "" },
+			{ title: "Login", link: "/login", subItems: "" }
+		],
 		left: false,
 		collapseOpen: true
 	}
@@ -47,9 +55,16 @@ class Navigation extends Component {
 	}
 
 	render() {
+		const menu = this.state.navItems.map(item => (
+			<Button key={item.title} color="inherit">
+				<Link to={item.link}>{item.title}</Link>
+			</Button>
+		))
+
 		return (
 			<div className={this.styles.root}>
 				<Drawer
+					navItems={this.state.navItems}
 					open={this.state.collapseOpen}
 					left={this.state.left}
 					toggleDrawer={this.toggleDrawer}
@@ -58,13 +73,13 @@ class Navigation extends Component {
 				<AppBar position="static" style={this.styles.background}>
 					<Toolbar>
 						<Hidden lgUp>
-							<IconButton
-								style={this.styles.menuButton}
-								color="inherit"
-								onClick={this.toggleDrawer("left", true)}
-								aria-label="Menu">
-								<MenuIcon />
-							</IconButton>
+						<IconButton
+							style={this.styles.menuButton}
+							color="inherit"
+							onClick={this.toggleDrawer("left", true)}
+							aria-label="Menu">
+							<MenuIcon />
+						</IconButton>
 						</Hidden>
 						<Typography
 							variant="title"
@@ -72,22 +87,7 @@ class Navigation extends Component {
 							style={this.styles.flex}>
 							<Link to="/">Arsenal Fan Centre</Link>
 						</Typography>
-						<Hidden mdDown>
-							<Button color="inherit">
-								<Link to="/">Home</Link>
-							</Button>
-							<Button color="inherit">
-								<Link to="/players">Players</Link>
-							</Button>
-							<Button color="inherit">Club</Button>
-							<Button color="inherit">Fans</Button>
-							<Button color="inherit">
-								<Link to="/about">About</Link>
-							</Button>
-							<Button color="inherit">
-								<Link to="/login">Login</Link>
-							</Button>
-						</Hidden>
+						<Hidden mdDown>{menu}</Hidden>
 					</Toolbar>
 				</AppBar>
 			</div>
