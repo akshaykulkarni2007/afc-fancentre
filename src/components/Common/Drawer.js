@@ -9,10 +9,9 @@ import {
 	List,
 	ListItem,
 	ListItemText,
-	Collapse,
-	Divider
+	Collapse
 } from "@material-ui/core/"
-import { ExpandLess, ExpandMore } from "@material-ui/icons"
+import { ExpandLess, ChevronRight } from "@material-ui/icons"
 
 const styles = {
 	list: {
@@ -23,6 +22,9 @@ const styles = {
 	},
 	link: {
 		color: "rgb(254, 0, 12) !important"
+	},
+	subLink: {
+		paddingLeft: "2.5rem"
 	}
 }
 
@@ -31,7 +33,7 @@ class TemporaryDrawer extends Component {
 		const { classes } = this.props
 
 		const menu = this.props.navItems.map(
-			item =>
+			(item, index) =>
 				!Array.isArray(item.subItems) ? (
 					<ListItem
 						key={item.title}
@@ -47,30 +49,60 @@ class TemporaryDrawer extends Component {
 						/>
 					</ListItem>
 				) : (
-					""
+					((index -= 2),
+					(
+						<div key={item.title}>
+							<ListItem button onClick={() => this.props.handleCollapse(index)}>
+								<ListItemText
+									inset
+									primary={
+										<Link to={item.link} className={classes.link}>
+											{item.title}
+										</Link>
+									}
+								/>
+								{this.props.collapse[index].open ? (
+									<Link to="" className={classes.link}>
+										<ExpandLess />
+									</Link>
+								) : (
+									<Link to="" className={classes.link}>
+										<ChevronRight />
+									</Link>
+								)}
+							</ListItem>
+							{item.subItems.map(subitem => (
+								<Collapse
+									key={subitem.title}
+									in={this.props.collapse[index].open}
+									timeout="auto"
+									unmountOnExit>
+									<List component="div" disablePadding>
+										<ListItem
+											button
+											className={classes.nested}
+											onClick={this.props.toggleDrawer("left", false)}
+											className={classes.subLink}>
+											<ListItemText
+												inset
+												primary={
+													<Link to={subitem.link} className={classes.link}>
+														{subitem.title}
+													</Link>
+												}
+											/>
+										</ListItem>
+									</List>
+								</Collapse>
+							))}
+						</div>
+					))
 				)
 		)
 
 		const sideList = (
 			<div className={classes.list}>
 				<List component="nav">{menu}</List>
-
-				<Divider />
-
-				{/* <ListItem button onClick={this.props.handleCollapse}>
-					<ListItemText inset primary="Inbox" />
-					{this.props.open ? <ExpandLess /> : <ExpandMore />}
-				</ListItem>
-				<Collapse in={this.props.open} timeout="auto" unmountOnExit>
-					<List component="div" disablePadding>
-						<ListItem
-							button
-							className={classes.nested}
-							onClick={this.props.toggleDrawer("left", false)}>
-							<ListItemText inset primary="Starred" />
-						</ListItem>
-					</List>
-				</Collapse> */}
 			</div>
 		)
 

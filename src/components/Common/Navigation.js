@@ -19,13 +19,31 @@ class Navigation extends Component {
 		navItems: [
 			{ title: "Home", link: "/", subItems: "" },
 			{ title: "Players", link: "/players", subItems: "" },
-			{ title: "Club", link: "", subItems: ["one", "two"] },
-			{ title: "Fans", link: "", subItems: ["one", "two"] },
+			{
+				title: "Club",
+				link: "",
+				subItems: [
+					{ title: "The Season", link: "/club/season" },
+					{ title: "History", link: "/club/history" },
+					{ title: "Records", link: "/club/records" },
+					{ title: "Gallery", link: "/club/gallery" }
+				]
+			},
+			{
+				title: "Fans",
+				link: "",
+				subItems: [
+					{ title: "Feed", link: "/fans/feed" },
+					{ title: "Media", link: "/fans/media" },
+          { title: "Messages", link: "/fans/messages" },
+          {title: "Polls", link: "/fans/polls"}
+				]
+			},
 			{ title: "About", link: "/about", subItems: "" },
 			{ title: "Login", link: "/login", subItems: "" }
 		],
 		left: false,
-		collapseOpen: true
+		collapse: [{ title: "Club", open: false }, { title: "Fans", open: false }]
 	}
 
 	styles = {
@@ -50,8 +68,11 @@ class Navigation extends Component {
 		})
 	}
 
-	handleCollapse = () => {
-		this.setState(state => ({ collapseOpen: !state.collapseOpen }))
+	handleCollapse = index => {
+		const collapse = this.state.collapse
+		collapse[index].open = !collapse[index].open
+
+		this.setState({ collapse })
 	}
 
 	render() {
@@ -65,7 +86,7 @@ class Navigation extends Component {
 			<div className={this.styles.root}>
 				<Drawer
 					navItems={this.state.navItems}
-					open={this.state.collapseOpen}
+					collapse={this.state.collapse}
 					left={this.state.left}
 					toggleDrawer={this.toggleDrawer}
 					handleCollapse={this.handleCollapse}

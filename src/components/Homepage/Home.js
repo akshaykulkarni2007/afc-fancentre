@@ -40,23 +40,23 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "Stephan Lichtsteiner Is A Gunner!",
+			title: "Lucas Torreira joins Arsenal!",
 			content:
-				"Swiss international defender Stephan Lichtsteiner is joining us from Juventus.He signs as a free agent from the Serie A club, where he won the title in each of his seven seasons."
+				"Lucas Torreira is an Arsenal player at last. He joined us from Sampdoria for £26 million. He become Unai Emery’s fourth signing of the summer transfer window."
 		},
 		fixtures: {
 			previous: {
 				opponent: "Boreham Wood",
 				tournament: "Pre-Season Friendly",
 				venue: "away/Meadow Park",
-				date: new Date(2018, 7, 14),
+				date: new Date(2018, 6, 14),
 				scoreline: "0-8"
 			},
 			next: {
 				opponent: "Atletico Madrid",
 				tournament: "International Champions Cup",
 				venue: "home/Emirates Stadium",
-				date: new Date(2018, 7, 26)
+				date: new Date(2018, 6, 26)
 			}
 		},
 		playerStats: [
