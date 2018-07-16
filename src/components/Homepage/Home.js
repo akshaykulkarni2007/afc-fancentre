@@ -117,7 +117,8 @@ class Home extends Component {
 					<Banner
 						img={"images/" + this.state.banner.image}
 						title={this.state.banner.title}
-						height="650px">
+						height="650px"
+						color="#fe000c">
 						{this.state.banner.content}
 					</Banner>
 				</section>

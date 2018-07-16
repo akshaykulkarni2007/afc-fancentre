@@ -7,7 +7,7 @@ const styles = {
 	root: {
 		flexGrow: 1,
     margin: 0,
-    background: "rgb(254, 0, 12)",
+    background: "#fe000c",
     color: "white"
 	}
 }

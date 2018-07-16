@@ -58,7 +58,7 @@ class Navigation extends Component {
 			marginRight: 20
 		},
 		background: {
-			background: "rgb(254, 0, 12)"
+			background: "#fe000c"
 		}
 	}
 

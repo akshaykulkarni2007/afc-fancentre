@@ -4,7 +4,7 @@
 #homepage .section-title {
 	text-align: center;
 	margin: 2rem auto;
-	color: rgb(254, 0, 12);
+	color: #fe000c;
 }
 #homepage .fixtures-box {
 	display: flex;
@@ -14,9 +14,9 @@
 	border-top: 1px solid #000;
 }
 #homepage .red-box {
-	background: rgb(254, 0, 12);
+	background: #fe000c;
 	color: #fff;
-	border-right: 1px solid rgb(254, 0, 12);
+	border-right: 1px solid #fe000c;
 }
 #homepage .black-box {
 	background: #000;
@@ -38,7 +38,7 @@
 	transition: all 0.5s ease-in-out;
 }
 #homepage .red-box .fixtures-link {
-	color: rgb(254, 0, 12);
+	color: #fe000c;
 	background: rgb(255, 255, 255);
 }
 #homepage .red-box .fixtures-link:hover {
@@ -52,7 +52,7 @@
 }
 #homepage .black-box .fixtures-link:hover,
 #homepage .white-box .fixtures-link:hover {
-	background: rgb(254, 0, 12);
+	background: #fe000c;
 	color: #fff;
 }
 
@@ -60,7 +60,7 @@
 	color: #000;
 }
 #homepage tr.arsenal td {
-	background: rgb(254, 0, 12);
+	background: #fe000c;
 	color: white;
 	font-weight: bold;
 }
@@ -69,7 +69,7 @@
 	padding: 0;
 }
 #home-stats .stat-type h2 {
-	background: rgb(254, 0, 12);
+	background: #fe000c;
 	color: white;
 	margin: 0;
 	font-weight: normal;
@@ -91,7 +91,7 @@
 	}
 	#homepage .red-box {
 		border: none;
-		border-bottom: 1px solid rgb(254, 0, 12);
+		border-bottom: 1px solid #fe000c;
 	}
 
 }

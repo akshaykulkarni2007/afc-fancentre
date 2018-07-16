@@ -21,7 +21,7 @@ const styles = {
 		width: "auto"
 	},
 	link: {
-		color: "rgb(254, 0, 12) !important"
+		color: "#fe000c !important"
 	},
 	subLink: {
 		paddingLeft: "2.5rem"
