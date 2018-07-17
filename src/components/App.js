@@ -5,8 +5,7 @@ import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
 import "./App.css";
 
 // Components
-import Navigation from "./Common/Navigation";
-import Footer from "./Common/Footer";
+import { Navigation, Footer } from "./Common";
 import Home from "./Homepage/Home";
 import Login from "./Auth/Login";
 import PlayerList from "./Players/PlayerList";
