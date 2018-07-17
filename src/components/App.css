@@ -6,3 +6,7 @@ a {
 .not-found {
   text-align: center;
 }
+
+.not-found img {
+  max-width: 25%;
+}
