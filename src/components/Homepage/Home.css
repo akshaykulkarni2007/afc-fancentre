@@ -1,3 +1,6 @@
+#homepage #home-banner .banner-background {
+	box-shadow: 0 0 1000px rgba(0,0,0,.7) inset;
+}
 #homepage h4, h5 {
 	font-weight: normal;
 }
