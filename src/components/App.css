@@ -10,3 +10,17 @@ a {
 .not-found img {
   max-width: 25%;
 }
+
+.form-input, label {
+  color: #fe000c !important;
+}
+.form-input {
+  width: 100%;
+}
+.btn {
+  border-radius: 0 !important;
+}
+.btn-primary {
+  background: #fe000c !important;
+  color: #fff !important;
+}
