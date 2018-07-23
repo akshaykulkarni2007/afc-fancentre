@@ -38,3 +38,5 @@
 <Link to="/polls">Polls</Link>
 <Link to="/gallery">Gallery</Link>
 <Link to="/local-supporters">Local Supporters Clubs</Link>
+
+Failed to load http://localhost:5000/api/users/login: Response to preflight request doesn't pass access control check: No 'Access-Control-Allow-Origin' header is present on the requested resource. Origin 'http://localhost:3000' is therefore not allowed access.

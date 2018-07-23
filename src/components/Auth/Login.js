@@ -48,7 +48,7 @@ class Login extends Component {
 		}
 		axios
 			.post("http://localhost:5000/api/users/login", user)
-			.then(res => console.log(res.data))
+			.then(res => this.props.history.push("/"))
 			.catch(err => console.log(err.response.data))
 	}
 

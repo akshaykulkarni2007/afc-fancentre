@@ -80,9 +80,9 @@ class TemporaryDrawer extends Component {
 									<List component="div" disablePadding>
 										<ListItem
 											button
-											className={classes.nested}
+											className={[classes.nested, classes.subLink].join(' ')}
 											onClick={this.props.toggleDrawer("left", false)}
-											className={classes.subLink}>
+											>
 											<ListItemText
 												inset
 												primary={
