@@ -8,7 +8,6 @@ import {
 	Drawer,
 	List,
 	ListItem,
-	ListItemText,
 	Collapse
 } from "@material-ui/core/"
 import { ExpandLess, ChevronRight } from "@material-ui/icons"
@@ -21,7 +20,9 @@ const styles = {
 		width: "auto"
 	},
 	link: {
-		color: "#fe000c !important"
+		color: "#fe000c !important",
+		width: "100%",
+		paddingLeft: "56px"
 	},
 	subLink: {
 		paddingLeft: "2.5rem"
@@ -39,28 +40,18 @@ class TemporaryDrawer extends Component {
 						key={item.title}
 						button
 						onClick={this.props.toggleDrawer("left", false)}>
-						<ListItemText
-							inset
-							primary={
-								<Link to={item.link} className={classes.link}>
-									{item.title}
-								</Link>
-							}
-						/>
+						<Link to={item.link} className={classes.link}>
+							{item.title}
+						</Link>
 					</ListItem>
 				) : (
 					((index -= 2),
 					(
 						<div key={item.title}>
 							<ListItem button onClick={() => this.props.handleCollapse(index)}>
-								<ListItemText
-									inset
-									primary={
-										<Link to={item.link} className={classes.link}>
-											{item.title}
-										</Link>
-									}
-								/>
+								<Link to={item.link} className={classes.link}>
+									{item.title}
+								</Link>
 								{this.props.collapse[index].open ? (
 									<Link to="" className={classes.link}>
 										<ExpandLess />
@@ -80,17 +71,11 @@ class TemporaryDrawer extends Component {
 									<List component="div" disablePadding>
 										<ListItem
 											button
-											className={[classes.nested, classes.subLink].join(' ')}
-											onClick={this.props.toggleDrawer("left", false)}
-											>
-											<ListItemText
-												inset
-												primary={
-													<Link to={subitem.link} className={classes.link}>
-														{subitem.title}
-													</Link>
-												}
-											/>
+											className={[classes.nested, classes.subLink].join(" ")}
+											onClick={this.props.toggleDrawer("left", false)}>
+											<Link to={subitem.link} className={classes.link}>
+												{subitem.title}
+											</Link>
 										</ListItem>
 									</List>
 								</Collapse>
