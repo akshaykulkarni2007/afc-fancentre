@@ -53,11 +53,11 @@ class TemporaryDrawer extends Component {
 									{item.title}
 								</Link>
 								{this.props.collapse[index].open ? (
-									<Link to="" className={classes.link}>
+									<Link to={item.link} className={classes.link}>
 										<ExpandLess />
 									</Link>
 								) : (
-									<Link to="" className={classes.link}>
+									<Link to={item.link} className={classes.link}>
 										<ChevronRight />
 									</Link>
 								)}
