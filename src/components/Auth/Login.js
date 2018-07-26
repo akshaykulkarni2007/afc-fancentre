@@ -47,7 +47,7 @@ class Login extends Component {
 			password: this.state.password
 		}
 		axios
-			.post("http://localhost:5000/api/users/login", user)
+			.post("/api/users/login", user)
 			.then(res => this.props.history.push("/"))
 			.catch(err => console.log(err.response.data))
 	}
