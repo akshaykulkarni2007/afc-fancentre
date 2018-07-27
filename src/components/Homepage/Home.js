@@ -46,17 +46,17 @@ class Home extends Component {
 		},
 		fixtures: {
 			previous: {
-				opponent: "Boreham Wood",
-				tournament: "Pre-Season Friendly",
-				venue: "away/Meadow Park",
-				date: new Date(2018, 6, 14),
-				scoreline: "0-8"
-			},
-			next: {
 				opponent: "Atletico Madrid",
 				tournament: "International Champions Cup",
-				venue: "home/Emirates Stadium",
-				date: new Date(2018, 6, 26)
+				venue: "away/Singapore National Stadium",
+				date: new Date(2018, 6, 26),
+				scoreline: "1(3) - 1(1)"
+			},
+			next: {
+				opponent: "PSG",
+				tournament: "International Champions Cup",
+				venue: "away/Singapore National Stadium",
+				date: new Date(2018, 6, 28)
 			}
 		},
 		playerStats: [
