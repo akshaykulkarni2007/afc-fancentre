@@ -17,7 +17,7 @@ import FourOFour from "./404"
 class App extends Component {
 	render() {
 		return (
-			<Router>
+			<Router basename="/">
 				<div className="app">
 					<Navigation />
 					<main>
