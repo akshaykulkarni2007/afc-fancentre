@@ -91,15 +91,25 @@ class Home extends Component {
 		]
 	}
 
+	dateFormat = {
+		weekday: "short",
+		year: "numeric",
+		month: "short",
+		day: "numeric"
+	}
+
+	getDate = date => date.toLocaleDateString("en-GB", this.dateFormat)
+
+	prevMatchVenueType = this.state.fixtures.previous.venue
+		.split("/")[0]
+		.toLowerCase()
+
+	nextMatchVenueType = this.state.fixtures.next.venue
+		.split("/")[0]
+		.toLowerCase()
+
 	render() {
 		const { classes } = this.props
-
-		const prevMatchVenueType = this.state.fixtures.previous.venue
-				.split("/")[0]
-				.toLowerCase(),
-			nextMatchVenueType = this.state.fixtures.next.venue
-				.split("/")[0]
-				.toLowerCase()
 
 		let gridItems = this.state.playerStats.map(player => (
 			<div
@@ -132,9 +142,9 @@ class Home extends Component {
 						<Grid container spacing={0}>
 							<Grid item xs={12} md={4} className="fixtures-box black-box">
 								<h2>Previous Match</h2>
-								<h4>{this.state.fixtures.previous.date.toDateString()}</h4>
+								<h4>{this.getDate(this.state.fixtures.previous.date)}</h4>
 								<h2>
-									{prevMatchVenueType === "home"
+									{this.prevMatchVenueType === "home"
 										? `Arsenal ${this.state.fixtures.previous.scoreline} ${
 												this.state.fixtures.previous.opponent
 										  }`
@@ -152,9 +162,9 @@ class Home extends Component {
 							</Grid>
 							<Grid item xs={12} md={4} className="fixtures-box red-box">
 								<h2>Next Match</h2>
-								<h4>{this.state.fixtures.next.date.toDateString()}</h4>
+								<h4>{this.getDate(this.state.fixtures.next.date)}</h4>
 								<h2>
-									{nextMatchVenueType === "home"
+									{this.nextMatchVenueType === "home"
 										? `Arsenal vs ${this.state.fixtures.next.opponent}`
 										: `${this.state.fixtures.next.opponent} vs Arsenal`}
 								</h2>
