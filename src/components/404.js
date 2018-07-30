@@ -1,13 +1,15 @@
-import React from "react";
+import React from "react"
 
 const FourOFour = () => {
-  return (
-    <div className="not-found">
-      <img src="/images/404.svg" alt="NOT FOUND" />
-      <h1>404</h1>
-      <h4>NOT FOUND</h4>
-    </div>
-  );
-};
+	return (
+		<div className="not-found">
+			<img src="/images/404.svg" alt="NOT FOUND" />
+			<h1>
+				Sorry, this page doesn't exist. Just like Champions League Trophy in our
+				cabinet.
+			</h1>
+		</div>
+	)
+}
 
-export default FourOFour;
+export default FourOFour

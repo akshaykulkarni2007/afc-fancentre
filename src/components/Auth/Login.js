@@ -8,7 +8,6 @@ import {
 	CardContent,
 	Grid,
 	Typography,
-	TextField,
 	Button
 } from "@material-ui/core"
 
@@ -48,7 +47,7 @@ class Login extends Component {
 		}
 
 		Axios.post("/api/users/login", user)
-			.then(res => console.log(res))
+			.then(res => this.props.history.push("/"))
 			.catch(err => console.log(err.response.data))
 	}
 
@@ -68,22 +67,27 @@ class Login extends Component {
 									className={classes.container}
 									noValidate
 									autoComplete="off">
-									<TextField
+									<label className="form-label" htmlFor="username">
+										Email ID
+									</label>
+									<input
 										id="username"
-										label="Username or Email"
+										placeholder="Username or Email"
 										className="form-input"
 										value={this.state.name}
 										onChange={this.handleChange("username")}
-										margin="normal"
 									/>
-									<TextField
+
+									<label className="form-label" htmlFor="password">
+										Password
+									</label>
+									<input
 										type="password"
 										id="password"
-										label="Password"
+										placeholder="Password"
 										className="form-input"
 										value={this.state.password}
 										onChange={this.handleChange("password")}
-										margin="normal"
 									/>
 
 									<Button
