@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import axios from "axios"
+import Axios from "../HOC/Axios"
 
 // Material
 import {
@@ -46,9 +46,8 @@ class Login extends Component {
 			email: this.state.username,
 			password: this.state.password
 		}
-		axios
-			.post("/api/users/login", user)
-			.then(res => this.props.history.push("/"))
+		Axios.post("/api/users/login", user)
+			.then(res => console.log(res))
 			.catch(err => console.log(err.response.data))
 	}
 
