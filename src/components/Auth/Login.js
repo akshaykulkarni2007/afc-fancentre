@@ -54,7 +54,7 @@ class Login extends Component {
 
 	render() {
 		const { classes } = this.props
-		console.log(process.env.NODE_ENV)
+
 		return (
 			<div id="login">
 				<Grid container spacing={0} justify="center">
