@@ -46,6 +46,7 @@ class Login extends Component {
 			email: this.state.username,
 			password: this.state.password
 		}
+
 		Axios.post("/api/users/login", user)
 			.then(res => console.log(res))
 			.catch(err => console.log(err.response.data))
@@ -53,7 +54,7 @@ class Login extends Component {
 
 	render() {
 		const { classes } = this.props
-
+		console.log(process.env.NODE_ENV)
 		return (
 			<div id="login">
 				<Grid container spacing={0} justify="center">
