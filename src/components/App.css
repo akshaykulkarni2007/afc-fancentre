@@ -20,7 +20,8 @@ a {
 }
 
 .form-input,
-label {
+label,
+.invalid-feedback {
 	color: #fe000c !important;
 }
 label.form-label {
@@ -29,6 +30,7 @@ label.form-label {
 .form-input {
 	display: block;
 	width: 100%;
+	height: calc(2.25rem + 2px);
 	margin-top: 0.1rem;
 	padding: 0.375rem 0.75rem;
 	font-size: 1rem;
@@ -36,6 +38,13 @@ label.form-label {
 	background-color: #fff;
 	background-clip: padding-box;
 	border: 1px solid #ced4da;
+	box-sizing: border-box;
+}
+.form-input.is-invalid {
+	border-color: #fe000c;
+}
+.invalid-feedback {
+	font-size: 0.8rem;
 }
 .btn {
 	border-radius: 0 !important;

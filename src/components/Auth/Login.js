@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import Axios from "../HOC/Axios"
+import FormInput from "../UI/FormInput"
 
 // Material
 import {
@@ -12,10 +13,6 @@ import {
 } from "@material-ui/core"
 
 const styles = theme => ({
-	container: {
-		display: "flex",
-		flexWrap: "wrap"
-	},
 	card: {
 		margin: "5rem auto"
 	},
@@ -31,7 +28,8 @@ const styles = theme => ({
 class Login extends Component {
 	state = {
 		username: "",
-		password: ""
+		password: "",
+		errors: {}
 	}
 
 	handleChange = name => event => {
@@ -48,11 +46,12 @@ class Login extends Component {
 
 		Axios.post("/api/users/login", user)
 			.then(res => this.props.history.push("/"))
-			.catch(err => console.log(err.response.data))
+			.catch(err => this.setState({ errors: err.response.data }))
 	}
 
 	render() {
 		const { classes } = this.props
+		const { errors } = this.state
 
 		return (
 			<div id="login">
@@ -63,30 +62,26 @@ class Login extends Component {
 								<Typography variant="display1" className={classes.sectionTitle}>
 									Login
 								</Typography>
-								<form
-									className={classes.container}
-									noValidate
-									autoComplete="off">
-									<label className="form-label" htmlFor="username">
-										Email ID
-									</label>
-									<input
+
+								<form noValidate autoComplete="off">
+									<FormInput
+										label="Email ID"
 										id="username"
 										placeholder="Username or Email"
 										className="form-input"
 										value={this.state.name}
+										error={errors.email}
 										onChange={this.handleChange("username")}
 									/>
 
-									<label className="form-label" htmlFor="password">
-										Password
-									</label>
-									<input
+									<FormInput
+										label="Password"
 										type="password"
 										id="password"
 										placeholder="Password"
 										className="form-input"
 										value={this.state.password}
+										error={errors.password}
 										onChange={this.handleChange("password")}
 									/>
 
