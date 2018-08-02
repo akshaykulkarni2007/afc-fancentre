@@ -44,7 +44,7 @@ class Navigation extends Component {
 				]
 			},
 			{ title: "About", link: "/about", subItems: "" },
-			{ title: "Login", link: "/login", subItems: "" }
+			{ title: "Login", link: "/auth", subItems: "" }
 		],
 		left: false,
 		collapse: [{ title: "Club", open: false }, { title: "Fans", open: false }],

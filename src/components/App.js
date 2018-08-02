@@ -9,7 +9,7 @@ import { Navigation, Footer } from "./Common"
 import { Gallery, History, Records, Season } from "./Club"
 import { Feed, Media, Messages, Polls } from "./Fans"
 import Home from "./Homepage/Home"
-import Login from "./Auth/Login"
+import Auth from "./Auth/Auth"
 import PlayerList from "./Players/PlayerList"
 import About from "./About/About"
 import FourOFour from "./404"
@@ -36,7 +36,7 @@ class App extends Component {
 							<Route exact path="/fans/polls" component={Polls} />
 
 							<Route exact path="/about" component={About} />
-							<Route exact path="/login" component={Login} />
+							<Route exact path="/auth" component={Auth} />
 							<Route component={FourOFour} />
 						</Switch>
 					</main>

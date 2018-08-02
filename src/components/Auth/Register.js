@@ -15,8 +15,10 @@ const styles = theme => ({
 
 class Login extends Component {
 	state = {
+		name: "",
 		email: "",
 		password: "",
+		password2: "",
 		errors: {}
 	}
 
@@ -26,15 +28,17 @@ class Login extends Component {
 		})
 	}
 
-	loginAction = () => {
-		const user = {
-			email: this.state.email,
-			password: this.state.password
+	registerAction = () => {
+		const newUser = {
+			name: this.state.name,
+			email: this.state.username,
+			password: this.state.password,
+			password2: this.state.password2
 		}
 
-		Axios.post("/api/users/login", user)
-			.then(res => this.props.history.push("/"))
-			.catch(err => this.setState({ errors: err.response.data }))
+		// Axios.post("/api/users/login", newUser)
+		// 	.then(res => this.props.history.push("/"))
+		// 	.catch(err => this.setState({ errors: err.response.data }))
 	}
 
 	render() {
@@ -42,12 +46,21 @@ class Login extends Component {
 		const { errors } = this.state
 
 		return (
-			<div id="login">
+			<div id="register">
 				<Typography variant="display1" className={classes.sectionTitle}>
-					Login
+					Register
 				</Typography>
 
 				<form noValidate autoComplete="off">
+					<FormInput
+						label="Name"
+						id="name"
+						placeholder="Name"
+						className="form-input"
+						value={this.state.name}
+						error={errors.name}
+						onChange={this.handleChange("name")}
+					/>
 					<FormInput
 						label="Email ID"
 						id="username"
@@ -57,7 +70,6 @@ class Login extends Component {
 						error={errors.email}
 						onChange={this.handleChange("email")}
 					/>
-
 					<FormInput
 						label="Password"
 						type="password"
@@ -68,13 +80,23 @@ class Login extends Component {
 						error={errors.password}
 						onChange={this.handleChange("password")}
 					/>
+					<FormInput
+						label="Repeat Password"
+						type="password"
+						id="password2"
+						placeholder="Repeat Password"
+						className="form-input"
+						value={this.state.password2}
+						error={errors.password2}
+						onChange={this.handleChange("password2")}
+					/>
 
 					<Button
 						variant="contained"
 						size="large"
 						className="btn btn-primary"
-						onClick={this.loginAction}>
-						Login
+						onClick={this.registerAction}>
+						Register
 					</Button>
 				</form>
 			</div>
