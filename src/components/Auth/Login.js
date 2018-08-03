@@ -1,6 +1,10 @@
 import React, { Component } from "react"
-import Axios from "../HOC/Axios"
 import { withRouter } from "react-router-dom"
+
+import { connect } from "react-redux"
+import { registerUser } from "../../actions/authActions"
+
+import Axios from "../HOC/Axios"
 import FormInput from "../UI/FormInput"
 
 // Material
@@ -32,9 +36,11 @@ class Login extends Component {
 			password: this.state.password
 		}
 
-		Axios.post("/api/users/login", user)
-			.then(res => this.props.history.push("/"))
-			.catch(err => this.setState({ errors: err.response.data }))
+		// Axios.post("/api/users/login", user)
+		// 	.then(res => this.props.history.push("/"))
+		// 	.catch(err => this.setState({ errors: err.response.data }))
+
+		this.props.registerUser(user)
 	}
 
 	render() {
@@ -82,4 +88,7 @@ class Login extends Component {
 	}
 }
 
-export default withRouter(withStyles(styles)(Login))
+export default connect(
+	null,
+	{ registerUser }
+)(withRouter(withStyles(styles)(Login)))
