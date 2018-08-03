@@ -2,7 +2,7 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
-import { registerUser } from "../../actions/authActions"
+import { test } from "../../actions/authActions"
 
 import Axios from "../HOC/Axios"
 import FormInput from "../UI/FormInput"
@@ -40,7 +40,7 @@ class Login extends Component {
 		// 	.then(res => this.props.history.push("/"))
 		// 	.catch(err => this.setState({ errors: err.response.data }))
 
-		this.props.registerUser(user)
+		this.props.test(user)
 	}
 
 	render() {
@@ -90,5 +90,5 @@ class Login extends Component {
 
 export default connect(
 	null,
-	{ registerUser }
+	{ test }
 )(withRouter(withStyles(styles)(Login)))
