@@ -46,3 +46,5 @@ Failed to load http://localhost:5000/api/users/login: Response to preflight requ
 			"target": "http://afcfc-backend.herokuapp.com"
 		}
 	}
+
+	{ title: "Login", link: "/auth", subItems: "" }

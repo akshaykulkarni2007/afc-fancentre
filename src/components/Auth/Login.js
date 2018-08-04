@@ -2,9 +2,8 @@ import React, { Component } from "react"
 import { withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
-import { test } from "../../actions/authActions"
+import { loginUser } from "../../actions/authActions"
 
-import Axios from "../HOC/Axios"
 import FormInput from "../UI/FormInput"
 
 // Material
@@ -36,11 +35,23 @@ class Login extends Component {
 			password: this.state.password
 		}
 
-		// Axios.post("/api/users/login", user)
-		// 	.then(res => this.props.history.push("/"))
-		// 	.catch(err => this.setState({ errors: err.response.data }))
+		this.props.loginUser(user, this.props.history)
+	}
 
-		this.props.test(user)
+	componentDidMount() {
+		if (this.props.auth.isAuthenticated) {
+			this.props.history.push("/")
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.auth.isAuthenticated) {
+			this.props.history.push("/")
+		}
+
+		if (nextProps.errors) {
+			this.setState({ errors: nextProps.errors })
+		}
 	}
 
 	render() {
@@ -88,7 +99,12 @@ class Login extends Component {
 	}
 }
 
+const mapStateToProps = state => ({
+	auth: state.auth,
+	errors: state.errors
+})
+
 export default connect(
-	null,
-	{ test }
+	mapStateToProps,
+	{ loginUser }
 )(withRouter(withStyles(styles)(Login)))

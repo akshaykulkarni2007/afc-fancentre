@@ -1,6 +1,9 @@
 import React, { Component } from "react"
-import Axios from "../HOC/Axios"
 import { withRouter } from "react-router-dom"
+
+import { connect } from "react-redux"
+import { registerUser } from "../../actions/authActions"
+
 import FormInput from "../UI/FormInput"
 
 // Material
@@ -13,7 +16,7 @@ const styles = theme => ({
 	}
 })
 
-class Login extends Component {
+class Register extends Component {
 	state = {
 		name: "",
 		email: "",
@@ -31,14 +34,24 @@ class Login extends Component {
 	registerAction = () => {
 		const newUser = {
 			name: this.state.name,
-			email: this.state.username,
+			email: this.state.email,
 			password: this.state.password,
 			password2: this.state.password2
 		}
 
-		// Axios.post("/api/users/login", newUser)
-		// 	.then(res => this.props.history.push("/"))
-		// 	.catch(err => this.setState({ errors: err.response.data }))
+		this.props.registerUser(newUser, this.props.history)
+	}
+
+	componentDidMount() {
+		if (this.props.auth.isAuthenticated) {
+			this.props.history.push("/")
+		}
+	}
+
+	componentWillReceiveProps(nextProps) {
+		if (nextProps.errors) {
+			this.setState({ errors: nextProps.errors })
+		}
 	}
 
 	render() {
@@ -66,7 +79,7 @@ class Login extends Component {
 						id="username"
 						placeholder="Email"
 						className="form-input"
-						value={this.state.name}
+						value={this.state.email}
 						error={errors.email}
 						onChange={this.handleChange("email")}
 					/>
@@ -104,4 +117,12 @@ class Login extends Component {
 	}
 }
 
-export default withRouter(withStyles(styles)(Login))
+const mapStateToProps = state => ({
+	auth: state.auth,
+	errors: state.errors
+})
+
+export default connect(
+	mapStateToProps,
+	{ registerUser }
+)(withRouter(withStyles(styles)(Register)))

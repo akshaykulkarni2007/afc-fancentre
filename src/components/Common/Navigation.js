@@ -1,7 +1,10 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
 
+import { connect } from "react-redux"
+
 import Drawer from "./Drawer"
+import { logoutUser } from "../../actions/authActions"
 
 // Material
 import {
@@ -43,8 +46,9 @@ class Navigation extends Component {
 					{ title: "Polls", link: "/fans/polls" }
 				]
 			},
-			{ title: "About", link: "/about", subItems: "" },
-			{ title: "Login", link: "/auth", subItems: "" }
+			{ title: "About", link: "/about", subItems: "" }
+			// { title: "Login", link: "/auth", subItems: "" }
+			// { title: "Logout", link: "/", subItems: "", clickAction: "logoutAction" }
 		],
 		left: false,
 		collapse: [{ title: "Club", open: false }, { title: "Fans", open: false }],
@@ -111,7 +115,25 @@ class Navigation extends Component {
 		this.setState({ dropDown })
 	}
 
+	logoutAction = e => {
+		e.preventDefault()
+		this.props.logoutUser()
+	}
+
 	render() {
+		const authLinks = this.props.auth.isAuthenticated ? (
+			<Link
+				to=""
+				style={this.styles.navLink}
+				onClick={this.logoutAction.bind(this)}>
+				Logout
+			</Link>
+		) : (
+			<Link to="/auth" style={this.styles.navLink}>
+				Login
+			</Link>
+		)
+
 		const menu = this.state.navItems.map(
 			(item, index) =>
 				!Array.isArray(item.subItems) ? (
@@ -154,6 +176,7 @@ class Navigation extends Component {
 			<div className={this.styles.root}>
 				<Drawer
 					navItems={this.state.navItems}
+					authLinks={authLinks}
 					collapse={this.state.collapse}
 					left={this.state.left}
 					toggleDrawer={this.toggleDrawer}
@@ -176,7 +199,10 @@ class Navigation extends Component {
 							style={this.styles.flex}>
 							<Link to="/">Arsenal Fan Centre</Link>
 						</Typography>
-						<Hidden mdDown>{menu}</Hidden>
+						<Hidden mdDown>
+							{menu}
+							{authLinks}
+						</Hidden>
 					</Toolbar>
 				</AppBar>
 			</div>
@@ -184,4 +210,11 @@ class Navigation extends Component {
 	}
 }
 
-export default Navigation
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+export default connect(
+	mapStateToProps,
+	{ logoutUser }
+)(Navigation)
