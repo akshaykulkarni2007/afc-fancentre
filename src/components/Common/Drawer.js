@@ -8,7 +8,8 @@ import {
 	Drawer,
 	List,
 	ListItem,
-	Collapse
+	Collapse,
+	Divider
 } from "@material-ui/core/"
 import { ExpandLess, ChevronRight } from "@material-ui/icons"
 
@@ -30,8 +31,80 @@ const styles = {
 }
 
 class TemporaryDrawer extends Component {
+	classes = this.props.classes
+
+	itemsWithCollapse = (item, index) => (
+		<div key={item.title}>
+			<ListItem button onClick={() => this.props.handleCollapse(index)}>
+				<Link to={item.link} className={this.classes.link}>
+					{item.title}
+				</Link>
+				{this.props.collapse[index].open ? (
+					<Link to={item.link} className={this.classes.link}>
+						<ExpandLess />
+					</Link>
+				) : (
+					<Link to={item.link} className={this.classes.link}>
+						<ChevronRight />
+					</Link>
+				)}
+			</ListItem>
+
+			{item.subItems.map(subitem => (
+				<Collapse
+					key={subitem.title}
+					in={this.props.collapse[index].open}
+					timeout="auto"
+					unmountOnExit>
+					<List component="div" disablePadding>
+						<ListItem
+							button
+							className={[this.classes.nested, this.classes.subLink].join(" ")}
+							onClick={this.props.toggleDrawer("left", false)}>
+							<Link
+								to={subitem.link}
+								className={this.classes.link}
+								onClick={subitem.onClick}>
+								{subitem.title}
+							</Link>
+						</ListItem>
+					</List>
+				</Collapse>
+			))}
+		</div>
+	)
+
 	render() {
-		const { classes } = this.props
+		const authLinks = this.props.isAuthenticated ? (
+			this.itemsWithCollapse(
+				{
+					title: this.props.user.name,
+					link: "/",
+					subItems: [
+						{ title: "My Account", link: "/my-account" },
+						{
+							title: "Logout",
+							link: "",
+							onClick: this.props.logoutAction.bind(this)
+						}
+					],
+					divider: true
+				},
+				2
+			)
+		) : (
+			<div>
+				<ListItem
+					button
+					onClick={this.props.toggleDrawer("left", false)}
+					style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
+					<Link to="/auth" className={this.classes.link}>
+						Login
+					</Link>
+				</ListItem>
+				<Divider />
+			</div>
+		)
 
 		const menu = this.props.navItems.map(
 			(item, index) =>
@@ -40,53 +113,17 @@ class TemporaryDrawer extends Component {
 						key={item.title}
 						button
 						onClick={this.props.toggleDrawer("left", false)}>
-						<Link to={item.link} className={classes.link}>
+						<Link to={item.link} className={this.classes.link}>
 							{item.title}
 						</Link>
 					</ListItem>
 				) : (
-					((index -= 2),
-					(
-						<div key={item.title}>
-							<ListItem button onClick={() => this.props.handleCollapse(index)}>
-								<Link to={item.link} className={classes.link}>
-									{item.title}
-								</Link>
-								{this.props.collapse[index].open ? (
-									<Link to={item.link} className={classes.link}>
-										<ExpandLess />
-									</Link>
-								) : (
-									<Link to={item.link} className={classes.link}>
-										<ChevronRight />
-									</Link>
-								)}
-							</ListItem>
-							{item.subItems.map(subitem => (
-								<Collapse
-									key={subitem.title}
-									in={this.props.collapse[index].open}
-									timeout="auto"
-									unmountOnExit>
-									<List component="div" disablePadding>
-										<ListItem
-											button
-											className={[classes.nested, classes.subLink].join(" ")}
-											onClick={this.props.toggleDrawer("left", false)}>
-											<Link to={subitem.link} className={classes.link}>
-												{subitem.title}
-											</Link>
-										</ListItem>
-									</List>
-								</Collapse>
-							))}
-						</div>
-					))
+					((index -= 2), this.itemsWithCollapse(item, index))
 				)
 		)
 
 		const sideList = (
-			<div className={classes.list}>
+			<div className={this.classes.list}>
 				<List component="nav">{menu}</List>
 			</div>
 		)
@@ -100,6 +137,7 @@ class TemporaryDrawer extends Component {
 						tabIndex={0}
 						role="button"
 						onKeyDown={this.props.toggleDrawer("left", false)}>
+						{authLinks}
 						{sideList}
 					</div>
 				</Drawer>

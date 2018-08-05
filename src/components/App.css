@@ -7,6 +7,11 @@ a {
 	color: inherit;
 }
 
+::selection {
+	background: #fe000c;
+	color: #fff;
+}
+
 .not-found {
 	display: flex;
 	flex-direction: column;

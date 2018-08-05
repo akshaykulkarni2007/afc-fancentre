@@ -17,6 +17,7 @@ import {
 	ListItem
 } from "@material-ui/core"
 import MenuIcon from "@material-ui/icons/Menu"
+import { ExpandMore } from "@material-ui/icons"
 
 // CSS
 import "./Common.css"
@@ -47,12 +48,18 @@ class Navigation extends Component {
 				]
 			},
 			{ title: "About", link: "/about", subItems: "" }
-			// { title: "Login", link: "/auth", subItems: "" }
-			// { title: "Logout", link: "/", subItems: "", clickAction: "logoutAction" }
 		],
 		left: false,
-		collapse: [{ title: "Club", open: false }, { title: "Fans", open: false }],
-		dropDown: [{ title: "Club", open: false }, { title: "Fans", open: false }]
+		collapse: [
+			{ title: "Club", open: false },
+			{ title: "Fans", open: false },
+			{ title: "Account", open: false }
+		],
+		dropDown: [
+			{ title: "Club", open: false },
+			{ title: "Fans", open: false },
+			{ title: "Account", open: false }
+		]
 	}
 
 	styles = {
@@ -85,6 +92,11 @@ class Navigation extends Component {
 			textAlign: "center",
 			color: "#fe000c",
 			background: "#fff"
+		},
+		expandArrow: {
+			position: "relative",
+			top: "5px",
+			left: "5px"
 		}
 	}
 
@@ -120,14 +132,49 @@ class Navigation extends Component {
 		this.props.logoutUser()
 	}
 
+	itemsWithDropdown = (item, index) => (
+		<div key={item.title} style={{ position: "relative" }}>
+			<Link
+				to={item.link}
+				style={this.styles.navLink}
+				onMouseEnter={() => this.handleDropDown(index)}
+				onMouseLeave={() => this.handleDropDown(index)}>
+				{item.title} <ExpandMore style={this.styles.expandArrow} />
+			</Link>
+			{this.state.dropDown[index].open ? (
+				<Paper
+					style={this.styles.paper}
+					onMouseEnter={() => this.keepDropDownOpen(index)}
+					onMouseLeave={() => this.handleDropDown(index)}
+					onClick={() => this.handleDropDown(index)}>
+					{item.subItems.map(subitem => (
+						<ListItem
+							key={subitem.title}
+							style={this.styles.subLink}
+							className="nav-drowdown-link">
+							<Link to={subitem.link} onClick={subitem.onClick}>
+								{subitem.title}
+							</Link>
+						</ListItem>
+					))}
+				</Paper>
+			) : null}
+		</div>
+	)
+
 	render() {
 		const authLinks = this.props.auth.isAuthenticated ? (
-			<Link
-				to=""
-				style={this.styles.navLink}
-				onClick={this.logoutAction.bind(this)}>
-				Logout
-			</Link>
+			this.itemsWithDropdown(
+				{
+					title: this.props.auth.user.name,
+					link: "/",
+					subItems: [
+						{ title: "My Account", link: "/my-account" },
+						{ title: "Logout", link: "", onClick: this.logoutAction.bind(this) }
+					]
+				},
+				2
+			)
 		) : (
 			<Link to="/auth" style={this.styles.navLink}>
 				Login
@@ -141,34 +188,7 @@ class Navigation extends Component {
 						{item.title}
 					</Link>
 				) : (
-					((index -= 2),
-					(
-						<div key={item.title} style={{ position: "relative" }}>
-							<Link
-								to={item.link}
-								style={this.styles.navLink}
-								onMouseEnter={() => this.handleDropDown(index)}
-								onMouseLeave={() => this.handleDropDown(index)}>
-								{item.title}
-							</Link>
-							{this.state.dropDown[index].open ? (
-								<Paper
-									style={this.styles.paper}
-									onMouseEnter={() => this.keepDropDownOpen(index)}
-									onMouseLeave={() => this.handleDropDown(index)}
-									onClick={() => this.handleDropDown(index)}>
-									{item.subItems.map(subitem => (
-										<ListItem
-											key={subitem.title}
-											style={this.styles.subLink}
-											className="nav-drowdown-link">
-											<Link to={subitem.link}>{subitem.title}</Link>
-										</ListItem>
-									))}
-								</Paper>
-							) : null}
-						</div>
-					))
+					((index -= 2), this.itemsWithDropdown(item, index))
 				)
 		)
 
@@ -176,7 +196,9 @@ class Navigation extends Component {
 			<div className={this.styles.root}>
 				<Drawer
 					navItems={this.state.navItems}
-					authLinks={authLinks}
+					isAuthenticated={this.props.auth.isAuthenticated}
+					user={this.props.auth.user}
+					logoutAction={this.logoutAction}
 					collapse={this.state.collapse}
 					left={this.state.left}
 					toggleDrawer={this.toggleDrawer}
