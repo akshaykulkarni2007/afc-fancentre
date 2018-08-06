@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import { Link } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
 
@@ -129,7 +130,7 @@ class Navigation extends Component {
 
 	logoutAction = e => {
 		e.preventDefault()
-		this.props.logoutUser()
+		this.props.logoutUser(this.props.history)
 	}
 
 	itemsWithDropdown = (item, index) => (
@@ -170,7 +171,11 @@ class Navigation extends Component {
 					link: "/",
 					subItems: [
 						{ title: "My Account", link: "/my-account" },
-						{ title: "Logout", link: "", onClick: this.logoutAction.bind(this) }
+						{
+							title: "Logout",
+							link: "",
+							onClick: this.logoutAction.bind(this)
+						}
 					]
 				},
 				2
@@ -239,4 +244,4 @@ const mapStateToProps = state => ({
 export default connect(
 	mapStateToProps,
 	{ logoutUser }
-)(Navigation)
+)(withRouter(Navigation))
