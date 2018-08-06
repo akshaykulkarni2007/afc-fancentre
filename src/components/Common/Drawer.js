@@ -87,8 +87,7 @@ class TemporaryDrawer extends Component {
 							link: "",
 							onClick: this.props.logoutAction.bind(this)
 						}
-					],
-					divider: true
+					]
 				},
 				2
 			)
@@ -97,26 +96,29 @@ class TemporaryDrawer extends Component {
 				<ListItem
 					button
 					onClick={this.props.toggleDrawer("left", false)}
-					style={{ paddingTop: "2rem", paddingBottom: "1rem" }}>
+					style={{ paddingTop: "2rem", paddingBottom: "0.1rem" }}>
 					<Link to="/auth" className={this.classes.link}>
 						Login
 					</Link>
 				</ListItem>
-				<Divider />
 			</div>
 		)
 
 		const menu = this.props.navItems.map(
 			(item, index) =>
 				!Array.isArray(item.subItems) ? (
-					<ListItem
-						key={item.title}
-						button
-						onClick={this.props.toggleDrawer("left", false)}>
-						<Link to={item.link} className={this.classes.link}>
-							{item.title}
-						</Link>
-					</ListItem>
+					<div>
+						{index == 0 ? <Divider /> : ""}
+						<ListItem
+							key={item.title}
+							index={index}
+							button
+							onClick={this.props.toggleDrawer("left", false)}>
+							<Link to={item.link} className={this.classes.link}>
+								{item.title}
+							</Link>
+						</ListItem>
+					</div>
 				) : (
 					((index -= 2), this.itemsWithCollapse(item, index))
 				)
