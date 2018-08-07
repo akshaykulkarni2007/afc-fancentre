@@ -3,12 +3,21 @@ import jwt_decode from "jwt-decode"
 import Axios from "../components/HOC/Axios"
 import setAuthToken from "../utils/setAuthToken"
 
-import { GET_ERRORS, SET_CURRENT_USER } from "../actions/actionTypes"
+import {
+	GET_ERRORS,
+	SET_CURRENT_USER,
+	REGISTRATION_SUCCESS
+} from "../actions/actionTypes"
 
 // Register
 export const registerUser = (userData, history) => dispatch => {
 	Axios.post("/api/users/register", userData)
-		.then(res => history.push("/auth"))
+		.then(res =>
+			dispatch({
+				type: REGISTRATION_SUCCESS,
+				payload: true
+			})
+		)
 		.catch(err =>
 			dispatch({
 				type: GET_ERRORS,

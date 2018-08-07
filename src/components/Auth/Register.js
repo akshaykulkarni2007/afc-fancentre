@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
+import { Link, withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
 import { registerUser } from "../../actions/authActions"
@@ -111,6 +111,14 @@ class Register extends Component {
 						onClick={this.registerAction}>
 						Register
 					</Button>
+
+					<Typography
+						variant="subheading"
+						style={{ color: "green", marginTop: "1rem" }}>
+						{this.props.auth.success
+							? "Registration Successful. Please login"
+							: ""}
+					</Typography>
 				</form>
 			</div>
 		)

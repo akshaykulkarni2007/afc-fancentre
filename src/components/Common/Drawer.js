@@ -107,10 +107,9 @@ class TemporaryDrawer extends Component {
 		const menu = this.props.navItems.map(
 			(item, index) =>
 				!Array.isArray(item.subItems) ? (
-					<div>
-						{index == 0 ? <Divider /> : ""}
+					<div key={item.title}>
+						{index === 0 ? <Divider /> : ""}
 						<ListItem
-							key={item.title}
 							index={index}
 							button
 							onClick={this.props.toggleDrawer("left", false)}>
