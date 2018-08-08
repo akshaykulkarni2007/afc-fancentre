@@ -6,7 +6,8 @@ import setAuthToken from "../utils/setAuthToken"
 import {
 	GET_ERRORS,
 	SET_CURRENT_USER,
-	REGISTRATION_SUCCESS
+	REGISTRATION_SUCCESS,
+	ACTIVE_TAB
 } from "../actions/actionTypes"
 
 // Register
@@ -15,7 +16,10 @@ export const registerUser = (userData, history) => dispatch => {
 		.then(res =>
 			dispatch({
 				type: REGISTRATION_SUCCESS,
-				payload: true
+				payload: {
+					success: true,
+					activeTab: 0
+				}
 			})
 		)
 		.catch(err =>
@@ -55,6 +59,14 @@ export const setCurrentUser = decoded => {
 		type: SET_CURRENT_USER,
 		payload: decoded
 	}
+}
+
+// Set Active Tab
+export const setActiveTab = id => dispatch => {
+	dispatch({
+		type: ACTIVE_TAB,
+		payload: id
+	})
 }
 
 // Logout

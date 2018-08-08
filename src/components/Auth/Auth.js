@@ -1,4 +1,8 @@
 import React, { Component } from "react"
+
+import { connect } from "react-redux"
+import { setActiveTab } from "../../actions/authActions"
+
 import Login from "./Login"
 import Register from "./Register"
 
@@ -40,12 +44,12 @@ class Auth extends Component {
 	}
 
 	handleChange = (event, value) => {
-		this.setState({ activeTab: value })
+		this.props.setActiveTab(value)
 	}
 
 	render() {
 		const { classes } = this.props
-		const { activeTab } = this.state
+		const { activeTab } = this.props.auth
 
 		return (
 			<div id="auth">
@@ -78,4 +82,11 @@ class Auth extends Component {
 	}
 }
 
-export default withStyles(styles)(Auth)
+const mapStateToProps = state => ({
+	auth: state.auth
+})
+
+export default connect(
+	mapStateToProps,
+	{ setActiveTab }
+)(withStyles(styles)(Auth))

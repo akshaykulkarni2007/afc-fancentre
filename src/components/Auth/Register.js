@@ -111,14 +111,6 @@ class Register extends Component {
 						onClick={this.registerAction}>
 						Register
 					</Button>
-
-					<Typography
-						variant="subheading"
-						style={{ color: "green", marginTop: "1rem" }}>
-						{this.props.auth.success
-							? "Registration Successful. Please login"
-							: ""}
-					</Typography>
 				</form>
 			</div>
 		)

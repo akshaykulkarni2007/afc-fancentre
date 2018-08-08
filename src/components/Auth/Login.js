@@ -63,6 +63,14 @@ class Login extends Component {
 				<Typography variant="display1" className={classes.sectionTitle}>
 					Login
 				</Typography>
+				<Typography
+					variant="subheading"
+					gutterBottom
+					style={{ color: "green", marginTop: "1rem" }}>
+					{this.props.auth.success
+						? "Registration Successful. Please login"
+						: ""}
+				</Typography>
 
 				<form noValidate autoComplete="off">
 					<FormInput
