@@ -13,14 +13,14 @@ const Banner = props => {
 		title: {
 			margin: 0,
 			padding: "5rem 2rem 2rem",
-            maxWidth: "500px",
-            color: props.color
+			maxWidth: "500px",
+			color: props.color
 		},
 		content: {
 			margin: 0,
 			padding: "0 2rem 2rem",
-            maxWidth: "500px",
-            color: props.color
+			maxWidth: "500px",
+			color: props.color
 		}
 	}
 

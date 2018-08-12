@@ -7,20 +7,24 @@ import {
 	GET_ERRORS,
 	SET_CURRENT_USER,
 	REGISTRATION_SUCCESS,
-	ACTIVE_TAB
+	ACTIVE_TAB,
+	AUTH_LOADING,
+	CLEAR_ERRORS
 } from "../actions/actionTypes"
 
 // Register
-export const registerUser = (userData, history) => dispatch => {
+export const registerUser = userData => dispatch => {
+	dispatch(setLoading())
 	Axios.post("/api/users/register", userData)
-		.then(res =>
-			dispatch({
-				type: REGISTRATION_SUCCESS,
-				payload: {
-					success: true,
-					activeTab: 0
-				}
-			})
+		.then(
+			res =>
+				dispatch({
+					type: REGISTRATION_SUCCESS,
+					payload: {
+						success: true
+					}
+				}),
+			dispatch({ type: CLEAR_ERRORS })
 		)
 		.catch(err =>
 			dispatch({
@@ -31,7 +35,7 @@ export const registerUser = (userData, history) => dispatch => {
 }
 
 // Login
-export const loginUser = (userData, history) => dispatch => {
+export const loginUser = userData => dispatch => {
 	Axios.post("/api/users/login", userData)
 		.then(res => {
 			// Save to localStorage
@@ -61,14 +65,6 @@ export const setCurrentUser = decoded => {
 	}
 }
 
-// Set Active Tab
-export const setActiveTab = id => dispatch => {
-	dispatch({
-		type: ACTIVE_TAB,
-		payload: id
-	})
-}
-
 // Logout
 export const logoutUser = history => dispatch => {
 	// Remove token from localStorage
@@ -78,4 +74,19 @@ export const logoutUser = history => dispatch => {
 	// Set current user to {} which will set isAuthenticated to false
 	dispatch(setCurrentUser({}))
 	history.push("/")
+}
+
+// Set Active Tab
+export const setActiveTab = id => dispatch => {
+	dispatch({
+		type: ACTIVE_TAB,
+		payload: id
+	})
+}
+
+// Loading Status
+export const setLoading = () => {
+	return {
+		type: AUTH_LOADING
+	}
 }

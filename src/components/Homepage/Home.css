@@ -1,7 +1,8 @@
 #homepage #home-banner .banner-background {
-	box-shadow: 0 0 1000px rgba(0,0,0,.7) inset;
+	box-shadow: 0 0 0 1000px rgba(0, 0, 0, 0.5) inset;
 }
-#homepage h4, h5 {
+#homepage h4,
+h5 {
 	font-weight: normal;
 }
 #homepage .section-title {
@@ -79,9 +80,9 @@
 }
 
 @media (max-width: 960px) {
-	.banner-background {
+	/* .banner-background {
 		background-position: center;
-	}
+	} */
 
 	#homepage .fixtures-box {
 		border: none;
@@ -96,6 +97,4 @@
 		border: none;
 		border-bottom: 1px solid #fe000c;
 	}
-
 }
-

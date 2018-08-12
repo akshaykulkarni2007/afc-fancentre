@@ -35,7 +35,7 @@ class Login extends Component {
 			password: this.state.password
 		}
 
-		this.props.loginUser(user, this.props.history)
+		this.props.loginUser(user)
 	}
 
 	componentDidMount() {
@@ -57,6 +57,7 @@ class Login extends Component {
 	render() {
 		const { classes } = this.props
 		const { errors } = this.state
+		const { success } = this.props.auth
 
 		return (
 			<div id="login">
@@ -67,9 +68,7 @@ class Login extends Component {
 					variant="subheading"
 					gutterBottom
 					style={{ color: "green", marginTop: "1rem" }}>
-					{this.props.auth.success
-						? "Registration Successful. Please login"
-						: ""}
+					{success ? "Registration Successful. Please login" : ""}
 				</Typography>
 
 				<form noValidate autoComplete="off">

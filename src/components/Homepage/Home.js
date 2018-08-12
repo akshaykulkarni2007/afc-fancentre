@@ -40,9 +40,9 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "Lucas Torreira joins Arsenal!",
+			title: "A New Season!",
 			content:
-				"Lucas Torreira is an Arsenal player at last. He joined us from Sampdoria for £26 million. He become Unai Emery’s fourth signing of the summer transfer window."
+				"Arsenal to kick off new season at Emirates with tough fixture against defending champions Manchester City as new manager Unai Emery takes charge of first competitive game."
 		},
 		fixtures: {
 			previous: {
@@ -128,7 +128,7 @@ class Home extends Component {
 						img={"images/" + this.state.banner.image}
 						title={this.state.banner.title}
 						height="650px"
-						color="#fe000c">
+						color="#fff">
 						{this.state.banner.content}
 					</Banner>
 				</section>

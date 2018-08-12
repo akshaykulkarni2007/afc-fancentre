@@ -1,13 +1,41 @@
 .nav-drowdown-link {
-  text-align: center;
-  cursor: pointer;
-  transition: all 0.3s ease-in-out;
+	text-align: center;
+	cursor: pointer;
+	transition: all 0.3s ease-in-out;
 }
 .nav-drowdown-link:hover {
-  background: #fe000c !important;
-  color: #fff !important;
+	background: #fe000c !important;
+	color: #fff !important;
 }
 .nav-drowdown-link a {
-  display: block;
-  width: 100%;
+	display: block;
+	width: 100%;
+}
+
+/* Spinner */
+.spinner-container {
+	position: absolute;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	background: rgba(0, 0, 0, 0.5);
+}
+.spinner {
+	display: block;
+	position: relative;
+	top: 50%;
+	transform: translateY(-50%);
+	width: 200px;
+	margin: auto;
+	animation: loading 1s ease-in-out infinite alternate;
+}
+
+@keyframes loading {
+	from {
+		filter: brightness(90%);
+	}
+	to {
+		filter: brightness(30%);
+	}
 }

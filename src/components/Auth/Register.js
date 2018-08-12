@@ -1,10 +1,11 @@
 import React, { Component } from "react"
-import { Link, withRouter } from "react-router-dom"
+import { withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
 import { registerUser } from "../../actions/authActions"
 
 import FormInput from "../UI/FormInput"
+import Spinner from "../Common/Spinner"
 
 // Material
 import { withStyles, Typography, Button } from "@material-ui/core"
@@ -39,7 +40,7 @@ class Register extends Component {
 			password2: this.state.password2
 		}
 
-		this.props.registerUser(newUser, this.props.history)
+		this.props.registerUser(newUser)
 	}
 
 	componentDidMount() {
@@ -56,62 +57,69 @@ class Register extends Component {
 
 	render() {
 		const { classes } = this.props
+		const { loading } = this.props.auth
 		const { errors } = this.state
 
 		return (
 			<div id="register">
-				<Typography variant="display1" className={classes.sectionTitle}>
-					Register
-				</Typography>
+				{loading && Object.keys(errors).length === 0 ? (
+					<Spinner />
+				) : (
+					<div>
+						<Typography variant="display1" className={classes.sectionTitle}>
+							Register
+						</Typography>
 
-				<form noValidate autoComplete="off">
-					<FormInput
-						label="Name"
-						id="name"
-						placeholder="Name"
-						className="form-input"
-						value={this.state.name}
-						error={errors.name}
-						onChange={this.handleChange("name")}
-					/>
-					<FormInput
-						label="Email ID"
-						id="username"
-						placeholder="Email"
-						className="form-input"
-						value={this.state.email}
-						error={errors.email}
-						onChange={this.handleChange("email")}
-					/>
-					<FormInput
-						label="Password"
-						type="password"
-						id="password"
-						placeholder="Password"
-						className="form-input"
-						value={this.state.password}
-						error={errors.password}
-						onChange={this.handleChange("password")}
-					/>
-					<FormInput
-						label="Repeat Password"
-						type="password"
-						id="password2"
-						placeholder="Repeat Password"
-						className="form-input"
-						value={this.state.password2}
-						error={errors.password2}
-						onChange={this.handleChange("password2")}
-					/>
+						<form noValidate autoComplete="off">
+							<FormInput
+								label="Name"
+								id="name"
+								placeholder="Name"
+								className="form-input"
+								value={this.state.name}
+								error={errors.name}
+								onChange={this.handleChange("name")}
+							/>
+							<FormInput
+								label="Email ID"
+								id="username"
+								placeholder="Email"
+								className="form-input"
+								value={this.state.email}
+								error={errors.email}
+								onChange={this.handleChange("email")}
+							/>
+							<FormInput
+								label="Password"
+								type="password"
+								id="password"
+								placeholder="Password"
+								className="form-input"
+								value={this.state.password}
+								error={errors.password}
+								onChange={this.handleChange("password")}
+							/>
+							<FormInput
+								label="Repeat Password"
+								type="password"
+								id="password2"
+								placeholder="Repeat Password"
+								className="form-input"
+								value={this.state.password2}
+								error={errors.password2}
+								onChange={this.handleChange("password2")}
+							/>
 
-					<Button
-						variant="contained"
-						size="large"
-						className="btn btn-primary"
-						onClick={this.registerAction}>
-						Register
-					</Button>
-				</form>
+							<Button
+								variant="contained"
+								size="large"
+								className="btn btn-primary"
+								onClick={this.registerAction}>
+								Register
+							</Button>
+						</form>
+					</div>
+				)}
 			</div>
 		)
 	}
