@@ -46,17 +46,17 @@ class Home extends Component {
 		},
 		fixtures: {
 			previous: {
-				opponent: "Atletico Madrid",
-				tournament: "International Champions Cup",
-				venue: "away/Singapore National Stadium",
-				date: new Date(2018, 6, 26),
-				scoreline: "1(3) - 1(1)"
+				opponent: "Lazio",
+				tournament: "Friendly",
+				venue: "away/Friends Arena, Stockholm",
+				date: new Date(2018, 7, 4),
+				scoreline: "0 - 2"
 			},
 			next: {
-				opponent: "PSG",
-				tournament: "International Champions Cup",
-				venue: "away/Singapore National Stadium",
-				date: new Date(2018, 6, 28)
+				opponent: "Manchester City",
+				tournament: "Premier League",
+				venue: "home/Emirates Stadium",
+				date: new Date(2018, 7, 12)
 			}
 		},
 		playerStats: [
@@ -193,16 +193,16 @@ class Home extends Component {
 										<TableBody>
 											<TableRow>
 												<TableCell component="td" scope="row">
-													1
+													8
 												</TableCell>
-												<TableCell>Bournmouth</TableCell>
+												<TableCell>Wolves</TableCell>
 												<TableCell>0</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>1</TableCell>
 											</TableRow>
 
 											<TableRow className="arsenal">
 												<TableCell component="td" scope="row">
-													2
+													9
 												</TableCell>
 												<TableCell>Arsenal</TableCell>
 												<TableCell>0</TableCell>
@@ -211,9 +211,9 @@ class Home extends Component {
 
 											<TableRow>
 												<TableCell component="td" scope="row">
-													3
+													10
 												</TableCell>
-												<TableCell>Brighton</TableCell>
+												<TableCell>Burnley</TableCell>
 												<TableCell>0</TableCell>
 												<TableCell>0</TableCell>
 											</TableRow>
@@ -229,13 +229,13 @@ class Home extends Component {
 				</section>
 
 				{/* Stats */}
-				<section id="home-stats">
+				{/* <section id="home-stats">
 					<Typography variant="display2" className="section-title">
 						Season So Far
 					</Typography>
 
 					<ImageGrid content={gridItems} />
-				</section>
+				</section> */}
 
 				{/* Social */}
 
