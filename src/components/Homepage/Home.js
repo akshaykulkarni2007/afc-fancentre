@@ -40,23 +40,23 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "A New Season!",
+			title: "Outmatched by City... Again!",
 			content:
-				"Arsenal to kick off new season at Emirates with tough fixture against defending champions Manchester City as new manager Unai Emery takes charge of first competitive game."
+				"The Emery era at began with a defeat as Sterling and Silva strike to take all 3 points."
 		},
 		fixtures: {
 			previous: {
-				opponent: "Lazio",
-				tournament: "Friendly",
-				venue: "away/Friends Arena, Stockholm",
-				date: new Date(2018, 7, 4),
-				scoreline: "0 - 2"
-			},
-			next: {
 				opponent: "Manchester City",
 				tournament: "Premier League",
 				venue: "home/Emirates Stadium",
-				date: new Date(2018, 7, 12)
+				date: new Date(2018, 7, 12),
+				scoreline: "0 - 2"
+			},
+			next: {
+				opponent: "Chelsea",
+				tournament: "Premier League",
+				venue: "away/Stamford Bridge",
+				date: new Date(2018, 7, 18)
 			}
 		},
 		playerStats: [
@@ -193,28 +193,28 @@ class Home extends Component {
 										<TableBody>
 											<TableRow>
 												<TableCell component="td" scope="row">
-													8
+													14
 												</TableCell>
-												<TableCell>Wolves</TableCell>
+												<TableCell>Newcastle</TableCell>
+												<TableCell>-2</TableCell>
 												<TableCell>0</TableCell>
-												<TableCell>1</TableCell>
 											</TableRow>
 
 											<TableRow className="arsenal">
 												<TableCell component="td" scope="row">
-													9
+													15
 												</TableCell>
 												<TableCell>Arsenal</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>-2</TableCell>
 												<TableCell>0</TableCell>
 											</TableRow>
 
 											<TableRow>
 												<TableCell component="td" scope="row">
-													10
+													16
 												</TableCell>
-												<TableCell>Burnley</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>BHA</TableCell>
+												<TableCell>-2</TableCell>
 												<TableCell>0</TableCell>
 											</TableRow>
 										</TableBody>

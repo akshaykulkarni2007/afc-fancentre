@@ -2,6 +2,8 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import PropTypes from "prop-types"
 
+import Aux from "../HOC/Auxiliary"
+
 // Material
 import {
 	withStyles,
@@ -34,7 +36,7 @@ class TemporaryDrawer extends Component {
 	classes = this.props.classes
 
 	itemsWithCollapse = (item, index) => (
-		<div key={item.title}>
+		<Aux key={item.title}>
 			<ListItem button onClick={() => this.props.handleCollapse(index)}>
 				<Link to={item.link} className={this.classes.link}>
 					{item.title}
@@ -71,7 +73,7 @@ class TemporaryDrawer extends Component {
 					</List>
 				</Collapse>
 			))}
-		</div>
+		</Aux>
 	)
 
 	render() {
@@ -92,7 +94,7 @@ class TemporaryDrawer extends Component {
 				2
 			)
 		) : (
-			<div>
+			<Aux>
 				<ListItem
 					button
 					onClick={this.props.toggleDrawer("left", false)}
@@ -101,13 +103,13 @@ class TemporaryDrawer extends Component {
 						Login
 					</Link>
 				</ListItem>
-			</div>
+			</Aux>
 		)
 
 		const menu = this.props.navItems.map(
 			(item, index) =>
 				!Array.isArray(item.subItems) ? (
-					<div key={item.title}>
+					<Aux key={item.title}>
 						{index === 0 ? <Divider /> : ""}
 						<ListItem
 							index={index}
@@ -117,7 +119,7 @@ class TemporaryDrawer extends Component {
 								{item.title}
 							</Link>
 						</ListItem>
-					</div>
+					</Aux>
 				) : (
 					((index -= 2), this.itemsWithCollapse(item, index))
 				)
@@ -130,7 +132,7 @@ class TemporaryDrawer extends Component {
 		)
 
 		return (
-			<div>
+			<div id="drawer">
 				<Drawer
 					open={this.props.left}
 					onClose={this.props.toggleDrawer("left", false)}>

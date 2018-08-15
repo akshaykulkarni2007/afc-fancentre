@@ -36,6 +36,7 @@ export const registerUser = userData => dispatch => {
 
 // Login
 export const loginUser = userData => dispatch => {
+	dispatch(setLoading())
 	Axios.post("/api/users/login", userData)
 		.then(res => {
 			// Save to localStorage

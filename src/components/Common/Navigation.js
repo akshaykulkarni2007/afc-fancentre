@@ -3,9 +3,9 @@ import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 
 import { connect } from "react-redux"
+import { logoutUser } from "../../actions/authActions"
 
 import Drawer from "./Drawer"
-import { logoutUser } from "../../actions/authActions"
 
 // Material
 import {
@@ -198,7 +198,7 @@ class Navigation extends Component {
 		)
 
 		return (
-			<div className={this.styles.root}>
+			<div id="navbar" style={this.styles.root}>
 				<Drawer
 					navItems={this.state.navItems}
 					isAuthenticated={this.props.auth.isAuthenticated}

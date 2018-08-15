@@ -27,7 +27,8 @@ export default (state = initialState, action) => {
 			return {
 				...state,
 				isAuthenticated: !isEmpty(action.payload),
-				user: action.payload
+				user: action.payload,
+				loading: false
 			}
 		case ACTIVE_TAB:
 			return {

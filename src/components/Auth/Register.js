@@ -5,6 +5,7 @@ import { connect } from "react-redux"
 import { registerUser } from "../../actions/authActions"
 
 import FormInput from "../UI/FormInput"
+import Aux from "../HOC/Auxiliary"
 import Spinner from "../Common/Spinner"
 
 // Material
@@ -65,7 +66,7 @@ class Register extends Component {
 				{loading && Object.keys(errors).length === 0 ? (
 					<Spinner />
 				) : (
-					<div>
+					<Aux>
 						<Typography variant="display1" className={classes.sectionTitle}>
 							Register
 						</Typography>
@@ -118,7 +119,7 @@ class Register extends Component {
 								Register
 							</Button>
 						</form>
-					</div>
+					</Aux>
 				)}
 			</div>
 		)
