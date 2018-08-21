@@ -40,54 +40,62 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "Outmatched by City... Again!",
+			title: "Disastrous start: 2-0-0-2",
 			content:
-				"The Emery era at began with a defeat as Sterling and Silva strike to take all 3 points."
+				"We suffered a late defeat at Stamford Bridge on Saturday to leave Unai Emery still looking for his first points in charge."
 		},
 		fixtures: {
 			previous: {
-				opponent: "Manchester City",
-				tournament: "Premier League",
-				venue: "home/Emirates Stadium",
-				date: new Date(2018, 7, 12),
-				scoreline: "0 - 2"
-			},
-			next: {
 				opponent: "Chelsea",
 				tournament: "Premier League",
 				venue: "away/Stamford Bridge",
-				date: new Date(2018, 7, 18)
+				date: new Date(2018, 7, 18),
+				scoreline: "2 - 0"
+			},
+			next: {
+				opponent: "West Ham",
+				tournament: "Premier League",
+				venue: "home/Emirates Stadium",
+				date: new Date(2018, 7, 25)
 			}
 		},
 		playerStats: [
 			{
-				number: 14,
-				name: "Pierre-Emerick Aubameyang",
-				image: "Pierre-Emerick Aubameyang.jpg",
+				number: 7,
+				name: "Henrikh Mkhitaryan",
 				statName: "Most Goals",
-				statNumber: "10"
-			},
-			{
-				number: 11,
-				name: "Mesut Ozil",
-				image: "Mesut Ozil.png",
-				statName: "Most Assist",
-				statNumber: "10"
-			},
-			{
-				number: 6,
-				name: "Laurent Koscielny",
-				image: "Laurent Koscielny.png",
-				statName: "Most Red Cards",
 				statNumber: "1"
 			},
 			{
-				number: 1,
-				name: "Bernd Leno",
-				image: "Bernd Leno.jpg",
-				statName: "Most Clean Sheets",
-				statNumber: "10"
+				number: 17,
+				name: "Alex Iwobi",
+				statName: "Most Goals",
+				statNumber: "1"
+			},
+			{
+				number: 7,
+				name: "Henrikh Mkhitaryan",
+				statName: "Most Assist",
+				statNumber: "1"
+			},
+			{
+				number: 34,
+				name: "Granit Xhaka",
+				statName: "Most Yellow Cards",
+				statNumber: "2"
 			}
+			// {
+			// 	number: 6,
+			// 	name: "Laurent Koscielny",
+			// 	statName: "Most Red Cards",
+			// 	statNumber: "1"
+			// },
+			// {
+			// 	number: 1,
+			// 	name: "Bernd Leno",
+			// 	statName: "Most Clean Sheets",
+			// 	statNumber: "10"
+			// }
 		]
 	}
 
@@ -113,9 +121,9 @@ class Home extends Component {
 
 		let gridItems = this.state.playerStats.map(player => (
 			<div
-				key={player.number}
+				key={player.number + player.statName}
 				subHeader={`${player.statName} (${player.statNumber})`}
-				image={player.image}
+				image={player.name.replace(/\s+/g, "-").toLowerCase()}
 				title={`${player.number} ${player.name}`}
 			/>
 		))
@@ -193,28 +201,28 @@ class Home extends Component {
 										<TableBody>
 											<TableRow>
 												<TableCell component="td" scope="row">
-													14
+													16
 												</TableCell>
-												<TableCell>Newcastle</TableCell>
+												<TableCell>Cardiff</TableCell>
 												<TableCell>-2</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>1</TableCell>
 											</TableRow>
 
 											<TableRow className="arsenal">
 												<TableCell component="td" scope="row">
-													15
+													17
 												</TableCell>
 												<TableCell>Arsenal</TableCell>
-												<TableCell>-2</TableCell>
+												<TableCell>-3</TableCell>
 												<TableCell>0</TableCell>
 											</TableRow>
 
 											<TableRow>
 												<TableCell component="td" scope="row">
-													16
+													18
 												</TableCell>
-												<TableCell>BHA</TableCell>
-												<TableCell>-2</TableCell>
+												<TableCell>Fulham</TableCell>
+												<TableCell>-4</TableCell>
 												<TableCell>0</TableCell>
 											</TableRow>
 										</TableBody>
@@ -229,13 +237,13 @@ class Home extends Component {
 				</section>
 
 				{/* Stats */}
-				{/* <section id="home-stats">
+				<section id="home-stats">
 					<Typography variant="display2" className="section-title">
 						Season So Far
 					</Typography>
 
 					<ImageGrid content={gridItems} />
-				</section> */}
+				</section>
 
 				{/* Social */}
 

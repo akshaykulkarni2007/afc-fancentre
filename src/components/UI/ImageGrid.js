@@ -47,7 +47,10 @@ const ImageGrid = props => {
 						<ListSubheader component="div" className="stat-type">
 							<h2>{item.props.subHeader}</h2>
 						</ListSubheader>
-						<img src={"images/" + item.props.image} alt={item.props.name} />
+						<img
+							src={"images/" + item.props.image + ".jpg"}
+							alt={item.props.name}
+						/>
 						<GridListTileBar
 							title={<span className={classes.title}>{item.props.title}</span>}
 						/>
