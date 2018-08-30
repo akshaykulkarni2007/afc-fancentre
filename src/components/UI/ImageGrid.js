@@ -48,7 +48,7 @@ const ImageGrid = props => {
 							<h2>{item.props.subHeader}</h2>
 						</ListSubheader>
 						<img
-							src={"images/" + item.props.image + ".jpg"}
+							src={"/images/" + item.props.image + ".jpg"}
 							alt={item.props.name}
 						/>
 						<GridListTileBar

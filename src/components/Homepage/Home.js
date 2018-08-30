@@ -129,7 +129,7 @@ class Home extends Component {
 		))
 
 		return (
-			<div id="homepage">
+			<div id="homepage" style={{ marginTop: "-3rem" }}>
 				{/* News Banner */}
 				<section id="home-banner">
 					<Banner
