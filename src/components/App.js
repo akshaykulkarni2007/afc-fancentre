@@ -17,11 +17,17 @@ import "./App.css"
 
 // Components
 import { Navigation, Footer } from "./Common"
-import { Gallery, History, Records, Season } from "./Club"
+import {
+	Gallery,
+	History,
+	PlayerList,
+	PlayerDetails,
+	Records,
+	Season
+} from "./Club"
 import { Feed, Media, Messages, Polls } from "./Fans"
 import Home from "./Homepage/Home"
 import Auth from "./Auth/Auth"
-import PlayerList from "./Players/PlayerList"
 import About from "./About/About"
 import FourOFour from "./404"
 
@@ -54,8 +60,8 @@ class App extends Component {
 						<main>
 							<Switch>
 								<Route exact path="/" component={Home} />
-								<Route exact path="/players" component={PlayerList} />
 
+								<Route exact path="/club/players" component={PlayerList} />
 								<Route exact path="/club/gallery" component={Gallery} />
 								<Route exact path="/club/history" component={History} />
 								<Route exact path="/club/records" component={Records} />

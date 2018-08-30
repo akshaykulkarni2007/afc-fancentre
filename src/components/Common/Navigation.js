@@ -27,11 +27,11 @@ class Navigation extends Component {
 	state = {
 		navItems: [
 			{ title: "Home", link: "/", subItems: "" },
-			{ title: "Players", link: "/players", subItems: "" },
 			{
 				title: "Club",
 				link: "#!",
 				subItems: [
+					{ title: "Players", link: "/club/players" },
 					{ title: "The Season", link: "/club/season" },
 					{ title: "History", link: "/club/history" },
 					{ title: "Records", link: "/club/records" },
@@ -39,7 +39,7 @@ class Navigation extends Component {
 				]
 			},
 			{
-				title: "Fans",
+				title: "Fancenter",
 				link: "#!",
 				subItems: [
 					{ title: "Feed", link: "/fans/feed" },
@@ -85,7 +85,7 @@ class Navigation extends Component {
 		paper: {
 			position: "absolute",
 			top: 40,
-			left: "-40px",
+			left: "-30px",
 			width: "150px",
 			color: "#000"
 		},
@@ -193,7 +193,7 @@ class Navigation extends Component {
 						{item.title}
 					</Link>
 				) : (
-					((index -= 2), this.itemsWithDropdown(item, index))
+					((index -= 1), this.itemsWithDropdown(item, index))
 				)
 		)
 

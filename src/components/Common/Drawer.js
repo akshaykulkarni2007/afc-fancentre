@@ -121,7 +121,7 @@ class TemporaryDrawer extends Component {
 						</ListItem>
 					</Aux>
 				) : (
-					((index -= 2), this.itemsWithCollapse(item, index))
+					((index -= 1), this.itemsWithCollapse(item, index))
 				)
 		)
 
