@@ -40,62 +40,56 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "Disastrous start: 2-0-0-2",
+			title: "Up Next: Manchester City",
 			content:
-				"We suffered a late defeat at Stamford Bridge on Saturday to leave Unai Emery still looking for his first points in charge."
+				"Team prepares ahead of tough fixture away at Etihad. New signing Dennis Suarez may make Arsenal debut."
 		},
 		fixtures: {
 			previous: {
-				opponent: "Chelsea",
-				tournament: "Premier League",
-				venue: "away/Stamford Bridge",
-				date: new Date(2018, 7, 18),
-				scoreline: "2 - 0"
-			},
-			next: {
-				opponent: "West Ham",
+				opponent: "Cardiff City",
 				tournament: "Premier League",
 				venue: "home/Emirates Stadium",
-				date: new Date(2018, 7, 25)
+				date: new Date(2019, 0, 30),
+				scoreline: "2 - 1"
+			},
+			next: {
+				opponent: "Manchester City",
+				tournament: "Premier League",
+				venue: "away/Etihad Stadium",
+				date: new Date(2019, 1, 3)
 			}
 		},
 		playerStats: [
 			{
-				number: 7,
-				name: "Henrikh Mkhitaryan",
+				number: 14,
+				name: "Pierre-Emerick Aubameyang",
 				statName: "Most Goals",
-				statNumber: "1"
+				statNumber: "15"
 			},
 			{
-				number: 17,
-				name: "Alex Iwobi",
-				statName: "Most Goals",
-				statNumber: "1"
-			},
-			{
-				number: 7,
-				name: "Henrikh Mkhitaryan",
+				number: 8,
+				name: "Aaron Ramsey",
 				statName: "Most Assist",
-				statNumber: "1"
+				statNumber: "6"
 			},
 			{
-				number: 34,
-				name: "Granit Xhaka",
+				number: 5,
+				name: "Sokratis Papasthathopoulos",
 				statName: "Most Yellow Cards",
-				statNumber: "2"
-			}
+				statNumber: "7"
+			},
 			// {
 			// 	number: 6,
 			// 	name: "Laurent Koscielny",
 			// 	statName: "Most Red Cards",
 			// 	statNumber: "1"
 			// },
-			// {
-			// 	number: 1,
-			// 	name: "Bernd Leno",
-			// 	statName: "Most Clean Sheets",
-			// 	statNumber: "10"
-			// }
+			{
+				number: 19,
+				name: "Bernd Leno",
+				statName: "Most Clean Sheets",
+				statNumber: "2"
+			}
 		]
 	}
 
@@ -136,7 +130,8 @@ class Home extends Component {
 						img={"images/" + this.state.banner.image}
 						title={this.state.banner.title}
 						height="650px"
-						color="#fff">
+						color="#fff"
+						imgPosition="0 -250px">
 						{this.state.banner.content}
 					</Banner>
 				</section>
@@ -201,29 +196,29 @@ class Home extends Component {
 										<TableBody>
 											<TableRow>
 												<TableCell component="td" scope="row">
-													16
+													3
 												</TableCell>
-												<TableCell>Cardiff</TableCell>
-												<TableCell>-2</TableCell>
-												<TableCell>1</TableCell>
+												<TableCell>Spurs</TableCell>
+												<TableCell>26</TableCell>
+												<TableCell>54</TableCell>
 											</TableRow>
 
 											<TableRow className="arsenal">
 												<TableCell component="td" scope="row">
-													17
+													4
 												</TableCell>
 												<TableCell>Arsenal</TableCell>
-												<TableCell>-3</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>17</TableCell>
+												<TableCell>47</TableCell>
 											</TableRow>
 
 											<TableRow>
 												<TableCell component="td" scope="row">
-													18
+													5
 												</TableCell>
-												<TableCell>Fulham</TableCell>
-												<TableCell>-4</TableCell>
-												<TableCell>0</TableCell>
+												<TableCell>Chelsea</TableCell>
+												<TableCell>17</TableCell>
+												<TableCell>47</TableCell>
 											</TableRow>
 										</TableBody>
 									</Table>
