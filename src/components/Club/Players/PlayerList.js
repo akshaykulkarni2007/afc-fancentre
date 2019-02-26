@@ -38,7 +38,7 @@ class PlayerList extends Component {
 		const gridItems = this.state.players.map(player => (
 			<div
 				key={player.number}
-				image={player.name.replace(/\s+/g, "-").toLowerCase()}
+				image={player.dp}
 				title={`${player.number} ${player.name}`}
 			/>
 		))
