@@ -1,5 +1,7 @@
 import React, { Component } from "react"
 
+import Axios from "../HOC/Axios"
+
 // Material
 import {
 	withStyles,
@@ -59,38 +61,7 @@ class Home extends Component {
 				date: new Date(2019, 1, 3)
 			}
 		},
-		playerStats: [
-			{
-				number: 14,
-				name: "Pierre-Emerick Aubameyang",
-				statName: "Most Goals",
-				statNumber: "15"
-			},
-			{
-				number: 8,
-				name: "Aaron Ramsey",
-				statName: "Most Assist",
-				statNumber: "6"
-			},
-			{
-				number: 5,
-				name: "Sokratis Papasthathopoulos",
-				statName: "Most Yellow Cards",
-				statNumber: "7"
-			},
-			// {
-			// 	number: 6,
-			// 	name: "Laurent Koscielny",
-			// 	statName: "Most Red Cards",
-			// 	statNumber: "1"
-			// },
-			{
-				number: 19,
-				name: "Bernd Leno",
-				statName: "Most Clean Sheets",
-				statNumber: "2"
-			}
-		]
+		playerStats: []
 	}
 
 	dateFormat = {
@@ -109,6 +80,15 @@ class Home extends Component {
 	nextMatchVenueType = this.state.fixtures.next.venue
 		.split("/")[0]
 		.toLowerCase()
+
+	componentDidMount() {
+		Axios.get("/api/players/topStats")
+			.then(res => {
+				const playerStats = res.data
+				this.setState({ playerStats })
+			})
+			.catch(err => console.log(err))
+	}
 
 	render() {
 		const { classes } = this.props
