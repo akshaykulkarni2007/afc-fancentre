@@ -48,3 +48,6 @@ Failed to load http://localhost:5000/api/users/login: Response to preflight requ
 	}
 
 	{ title: "Login", link: "/auth", subItems: "" }
+
+
+	props.content.length * 2

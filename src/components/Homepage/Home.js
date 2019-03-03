@@ -93,11 +93,17 @@ class Home extends Component {
 	render() {
 		const { classes } = this.props
 
-		let gridItems = this.state.playerStats.map(player => (
+		// remove yellow card stat if red card stat exists
+		var index = this.state.playerStats.findIndex(function(o) {
+			return o.statName === "Most Yellow Cards"
+		})
+		if (index !== -1) this.state.playerStats.splice(index, 1)
+
+		let statGridItems = this.state.playerStats.map(player => (
 			<div
 				key={player.number + player.statName}
 				subHeader={`${player.statName} (${player.statNumber})`}
-				image={player.name.replace(/\s+/g, "-").toLowerCase()}
+				image={player.dp}
 				title={`${player.number} ${player.name}`}
 			/>
 		))
@@ -217,20 +223,10 @@ class Home extends Component {
 						Season So Far
 					</Typography>
 
-					<ImageGrid content={gridItems} />
+					<ImageGrid content={statGridItems} />
 				</section>
 
 				{/* Social */}
-
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
-				<br />
 			</div>
 		)
 	}

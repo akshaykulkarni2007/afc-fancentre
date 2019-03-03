@@ -16,7 +16,7 @@ const Footer = props => {
 	const { classes } = props
 
 	return (
-		<footer>
+		<footer style={{ paddingTop: "3rem" }}>
 			<div className={classes.root}>
 				<Grid container spacing={0}>
 					<Grid item xs={6}>

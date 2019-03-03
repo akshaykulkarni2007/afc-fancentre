@@ -1,4 +1,5 @@
 import React from "react"
+import { Link } from "react-router-dom"
 
 // Material
 import {
@@ -20,6 +21,7 @@ const styles = theme => ({
 	},
 	gridList: {
 		margin: 0
+		// "flex-wrap": "nowrap"
 	},
 	title: {
 		fontSize: 25
@@ -39,9 +41,14 @@ const ImageGrid = props => {
 		cols = 4
 	}
 
+	let itemWidth = 4
+	// if (props.content.length == 1) itemWidth = 2
+	// } else if ( props.content.length == 2) {
+	// 	itemWidth = 4
+	// }
 	return (
 		<div className={classes.gridListParent}>
-			<GridList cols={4} cellHeight={350} className={classes.gridList}>
+			<GridList cols={itemWidth} cellHeight={350} className={classes.gridList}>
 				{props.content.map(item => (
 					<GridListTile cols={cols} key={item.key}>
 						<ListSubheader component="div" className="stat-type">
@@ -51,9 +58,13 @@ const ImageGrid = props => {
 							src={"/images/" + item.props.image + ".jpg"}
 							alt={item.props.name}
 						/>
-						<GridListTileBar
-							title={<span className={classes.title}>{item.props.title}</span>}
-						/>
+						<Link to="#">
+							<GridListTileBar
+								title={
+									<span className={classes.title}>{item.props.title}</span>
+								}
+							/>
+						</Link>
 					</GridListTile>
 				))}
 			</GridList>
