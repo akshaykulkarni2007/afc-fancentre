@@ -1,6 +1,8 @@
 import React, { Component } from "react"
 
-import Axios from "../HOC/Axios"
+// redux and actions
+import { connect } from "react-redux"
+import { getTopPlayers } from "../../actions/playerActions"
 
 // Material
 import {
@@ -60,8 +62,7 @@ class Home extends Component {
 				venue: "away/Etihad Stadium",
 				date: new Date(2019, 1, 3)
 			}
-		},
-		playerStats: []
+		}
 	}
 
 	dateFormat = {
@@ -82,31 +83,24 @@ class Home extends Component {
 		.toLowerCase()
 
 	componentDidMount() {
-		Axios.get("/api/players/topStats")
-			.then(res => {
-				const playerStats = res.data
-				this.setState({ playerStats })
-			})
-			.catch(err => console.log(err))
+		this.props.getTopPlayers()
 	}
 
 	render() {
 		const { classes } = this.props
 
 		// remove yellow card stat if red card stat exists
-		var index = this.state.playerStats.findIndex(function(o) {
-			return o.statName === "Most Yellow Cards"
-		})
-		if (index !== -1) this.state.playerStats.splice(index, 1)
+		// var index = this.state.playerStats.findIndex(function(o) {
+		// 	return o.statName === "Most Yellow Cards"
+		// })
+		// if (index !== -1) this.state.playerStats.splice(index, 1)
 
-		let statGridItems = this.state.playerStats.map(player => (
-			<div
-				key={player.number + player.statName}
-				subHeader={`${player.statName} (${player.statNumber})`}
-				image={player.dp}
-				title={`${player.number} ${player.name}`}
-			/>
-		))
+		let statGridItems = this.props.players.topPlayers.map(player => ({
+			key: player.number + player.statName,
+			subHeader: `${player.statName} (${player.statNumber})`,
+			image: player.dp,
+			title: `${player.number} ${player.name}`
+		}))
 
 		return (
 			<div id="homepage" style={{ marginTop: "-3rem" }}>
@@ -223,7 +217,7 @@ class Home extends Component {
 						Season So Far
 					</Typography>
 
-					<ImageGrid content={statGridItems} />
+					<ImageGrid content={statGridItems} cols={5} />
 				</section>
 
 				{/* Social */}
@@ -232,4 +226,12 @@ class Home extends Component {
 	}
 }
 
-export default withStyles(styles)(Home)
+const mapStateToProps = state => ({
+	players: state.players,
+	errors: state.errors
+})
+
+export default connect(
+	mapStateToProps,
+	{ getTopPlayers }
+)(withStyles(styles)(Home))

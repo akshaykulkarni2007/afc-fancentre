@@ -1,14 +1,14 @@
 import React, { Component } from "react"
-import { withRouter } from "react-router-dom"
 
-import ImageGrid from "../../UI/ImageGrid"
-
+// Redux and Actions
 import { connect } from "react-redux"
-import { bindActionCreators } from "redux"
 import { getPlayers } from "../../../actions/playerActions"
 
 // Material
 import { withStyles, Grid, Typography } from "@material-ui/core"
+
+// Custom Components
+import ImageGrid from "../../UI/ImageGrid"
 
 const styles = theme => ({
 	root: {
@@ -23,10 +23,6 @@ const styles = theme => ({
 })
 
 class PlayerList extends Component {
-	state = {
-		players1: []
-	}
-
 	componentDidMount() {
 		this.props.getPlayers()
 	}
@@ -39,14 +35,12 @@ class PlayerList extends Component {
 			mid = [],
 			fw = []
 
-		this.props.players.players.forEach(player => {
-			const item = (
-				<div
-					key={player.number}
-					image={player.dp}
-					title={`${player.number} ${player.name}`}
-				/>
-			)
+		this.props.players.playerList.forEach(player => {
+			const item = {
+				key: player.number,
+				image: player.dp,
+				title: `${player.number} ${player.name}`
+			}
 
 			const position = player.position.split("/")[0].trim()
 			if (position === "GK") {
@@ -121,11 +115,7 @@ const mapStateToProps = state => ({
 	errors: state.errors
 })
 
-// const mapDispatchToProps = dispatch => {
-// 	return { actions: bindActionCreators(GET_PLAYERS, dispatch) }
-// }
-
 export default connect(
 	mapStateToProps,
 	{ getPlayers }
-)(withRouter(withStyles(styles)(PlayerList)))
+)(withStyles(styles)(PlayerList))

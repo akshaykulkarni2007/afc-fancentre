@@ -1,7 +1,8 @@
-import { GET_PLAYERS } from "../actions/actionTypes"
+import { GET_PLAYERS, GET_TOP_PLAYERS } from "../actions/actionTypes"
 
 const initialState = {
-	players: []
+	playerList: [],
+	topPlayers: []
 	//loading: false
 }
 
@@ -10,7 +11,13 @@ export default (state = initialState, action) => {
 		case GET_PLAYERS:
 			return {
 				...state,
-				players: action.payload.players
+				playerList: action.payload.playerList
+			}
+
+		case GET_TOP_PLAYERS:
+			return {
+				...state,
+				topPlayers: action.payload.topPlayers
 			}
 
 		default:

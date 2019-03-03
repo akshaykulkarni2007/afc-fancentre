@@ -62,6 +62,11 @@ class App extends Component {
 								<Route exact path="/" component={Home} />
 
 								<Route exact path="/club/players" component={PlayerList} />
+								<Route
+									exact
+									path="/club/player/:name"
+									component={PlayerDetails}
+								/>
 								<Route exact path="/club/gallery" component={Gallery} />
 								<Route exact path="/club/history" component={History} />
 								<Route exact path="/club/records" component={Records} />

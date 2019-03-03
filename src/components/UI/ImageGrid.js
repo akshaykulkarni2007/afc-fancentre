@@ -41,28 +41,24 @@ const ImageGrid = props => {
 		cols = 4
 	}
 
-	let itemWidth = 4
+	let itemWidth = props.cols || 4
 	// if (props.content.length == 1) itemWidth = 2
 	// } else if ( props.content.length == 2) {
 	// 	itemWidth = 4
 	// }
+
 	return (
 		<div className={classes.gridListParent}>
 			<GridList cols={itemWidth} cellHeight={350} className={classes.gridList}>
 				{props.content.map(item => (
 					<GridListTile cols={cols} key={item.key}>
 						<ListSubheader component="div" className="stat-type">
-							<h2>{item.props.subHeader}</h2>
+							<h2>{item.subHeader}</h2>
 						</ListSubheader>
-						<img
-							src={"/images/" + item.props.image + ".jpg"}
-							alt={item.props.name}
-						/>
-						<Link to="#">
+						<img src={"/images/" + item.image + ".jpg"} alt={item.name} />
+						<Link to={`/club/player/${item.image}`}>
 							<GridListTileBar
-								title={
-									<span className={classes.title}>{item.props.title}</span>
-								}
+								title={<span className={classes.title}>{item.title}</span>}
 							/>
 						</Link>
 					</GridListTile>
