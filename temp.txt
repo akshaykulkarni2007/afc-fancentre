@@ -51,3 +51,9 @@ Failed to load http://localhost:5000/api/users/login: Response to preflight requ
 
 
 	props.content.length * 2
+
+	banner: {
+						...this.state.banner,
+						title: res.data.title,
+						content: res.data.content
+					}

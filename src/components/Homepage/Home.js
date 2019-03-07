@@ -4,6 +4,8 @@ import React, { Component } from "react"
 import { connect } from "react-redux"
 import { getTopPlayers } from "../../actions/playerActions"
 
+import Axios from "../HOC/Axios"
+
 // Material
 import {
 	withStyles,
@@ -44,9 +46,8 @@ class Home extends Component {
 	state = {
 		banner: {
 			image: "home-banner.jpg",
-			title: "Up Next: Manchester City",
-			content:
-				"Team prepares ahead of tough fixture away at Etihad. New signing Dennis Suarez may make Arsenal debut."
+			title: "",
+			content: ""
 		},
 		fixtures: {
 			previous: {
@@ -83,6 +84,20 @@ class Home extends Component {
 		.toLowerCase()
 
 	componentDidMount() {
+		// get banner content
+		Axios.get("/api/home-banner")
+			.then(res =>
+				this.setState((state, props) => ({
+					banner: {
+						...this.state.banner,
+						title: res.data.title,
+						content: res.data.content
+					}
+				}))
+			)
+			.catch(err => console.log(err))
+
+		// get top player stats
 		this.props.getTopPlayers()
 	}
 
@@ -111,7 +126,7 @@ class Home extends Component {
 						title={this.state.banner.title}
 						height="650px"
 						color="#fff"
-						imgPosition="0 -250px">
+						imgPosition="">
 						{this.state.banner.content}
 					</Banner>
 				</section>
