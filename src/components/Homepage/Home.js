@@ -21,6 +21,7 @@ import {
 // Custom Components
 import Banner from "../UI/Banner"
 import ImageGrid from "../UI/ImageGrid"
+import StandingsTableRow from "../Club/Season/StandingsTableRow"
 
 // CSS
 import "./Home.css"
@@ -63,7 +64,12 @@ class Home extends Component {
 				venue: "away/Etihad Stadium",
 				date: new Date(2019, 1, 3)
 			}
-		}
+		},
+		standingsTable: [
+			{ pos: 4, team: "Man United", matches: 29, GD: 20, points: 58 },
+			{ pos: 5, team: "Arsenal", matches: 29, GD: 22, points: 57 },
+			{ pos: 6, team: "Chelsea", matches: 29, GD: 19, points: 56 }
+		]
 	}
 
 	dateFormat = {
@@ -110,12 +116,23 @@ class Home extends Component {
 		// })
 		// if (index !== -1) this.state.playerStats.splice(index, 1)
 
-		let statGridItems = this.props.players.topPlayers.map(player => ({
+		const statGridItems = this.props.players.topPlayers.map(player => ({
 			key: player.number + player.statName,
 			subHeader: `${player.statName} (${player.statNumber})`,
 			image: player.dp,
 			title: `${player.number} ${player.name}`
 		}))
+
+		const standingsTableRow = this.state.standingsTable.map(row => (
+			<StandingsTableRow
+				key={row.team}
+				pos={row.pos}
+				team={row.team}
+				matches={row.matches}
+				GD={row.GD}
+				points={row.points}
+			/>
+		))
 
 		return (
 			<div id="homepage" style={{ marginTop: "-3rem" }}>
@@ -177,45 +194,17 @@ class Home extends Component {
 							<Grid item xs={12} md={4} className="fixtures-box white-box">
 								<h2>Table</h2>
 								<div className={classes.tableParent}>
-									<Table
-										className={classes.table}
-										style={{ maxWidth: 100 + "%" }}>
+									<Table className={classes.table} style={{ maxWidth: `100%` }}>
 										<TableHead>
 											<TableRow>
 												<TableCell>#</TableCell>
 												<TableCell>Team</TableCell>
+												<TableCell>Matches</TableCell>
 												<TableCell>+/-</TableCell>
 												<TableCell>Points</TableCell>
 											</TableRow>
 										</TableHead>
-										<TableBody>
-											<TableRow>
-												<TableCell component="td" scope="row">
-													3
-												</TableCell>
-												<TableCell>Spurs</TableCell>
-												<TableCell>26</TableCell>
-												<TableCell>54</TableCell>
-											</TableRow>
-
-											<TableRow className="arsenal">
-												<TableCell component="td" scope="row">
-													4
-												</TableCell>
-												<TableCell>Arsenal</TableCell>
-												<TableCell>17</TableCell>
-												<TableCell>47</TableCell>
-											</TableRow>
-
-											<TableRow>
-												<TableCell component="td" scope="row">
-													5
-												</TableCell>
-												<TableCell>Chelsea</TableCell>
-												<TableCell>17</TableCell>
-												<TableCell>47</TableCell>
-											</TableRow>
-										</TableBody>
+										<TableBody>{standingsTableRow}</TableBody>
 									</Table>
 								</div>
 								<a href="#!" className="fixtures-link">
