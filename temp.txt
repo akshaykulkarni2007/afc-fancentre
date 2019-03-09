@@ -57,3 +57,34 @@ Failed to load http://localhost:5000/api/users/login: Response to preflight requ
 						title: res.data.title,
 						content: res.data.content
 					}
+
+previous: {},
+			arsenal:{},
+			next:{}
+
+<TableRow>
+												<TableCell component="td" scope="row">
+													3
+												</TableCell>
+												<TableCell>Spurs</TableCell>
+												<TableCell>26</TableCell>
+												<TableCell>54</TableCell>
+											</TableRow>
+
+											<TableRow className="arsenal">
+												<TableCell component="td" scope="row">
+													4
+												</TableCell>
+												<TableCell>Arsenal</TableCell>
+												<TableCell>17</TableCell>
+												<TableCell>47</TableCell>
+											</TableRow>
+
+											<TableRow>
+												<TableCell component="td" scope="row">
+													5
+												</TableCell>
+												<TableCell>Chelsea</TableCell>
+												<TableCell>17</TableCell>
+												<TableCell>47</TableCell>
+											</TableRow>
