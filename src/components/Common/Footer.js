@@ -12,17 +12,15 @@ const styles = {
 	}
 }
 
-const Footer = props => {
-	const { classes } = props
-
+const Footer = ({ classes }) => {
 	return (
 		<footer style={{ paddingTop: "3rem" }}>
 			<div className={classes.root}>
 				<Grid container spacing={0}>
-					<Grid item xs={6}>
+					<Grid item sm={6}>
 						<p>&copy; 2018 Arsenal FC Fan Center</p>
 					</Grid>
-					<Grid item xs={6}>
+					<Grid item sm={6}>
 						<p align="right">Image courtsey: arsenal.com</p>
 					</Grid>
 				</Grid>

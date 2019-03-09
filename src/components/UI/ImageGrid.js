@@ -35,13 +35,15 @@ const ImageGrid = props => {
 	const { classes } = props
 
 	let cols = 1
+	let itemWidth = props.cols || 4
 	if (window.innerWidth < 960 && window.innerWidth > 600) {
 		cols = 2
+		itemWidth = 4
 	} else if (window.innerWidth < 600) {
 		cols = 4
+		itemWidth = 4
 	}
 
-	let itemWidth = props.cols || 4
 	// if (props.content.length == 1) itemWidth = 2
 	// } else if ( props.content.length == 2) {
 	// 	itemWidth = 4

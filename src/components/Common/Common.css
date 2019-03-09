@@ -31,6 +31,11 @@
 	animation: loading 1s ease-in-out infinite alternate;
 }
 
+/* Footer */
+footer p {
+	padding: 0 1rem;
+}
+
 @keyframes loading {
 	from {
 		filter: brightness(90%);

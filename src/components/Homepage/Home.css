@@ -96,4 +96,9 @@ h5 {
 		border: none;
 		border-bottom: 1px solid #fe000c;
 	}
+
+	#homepage th.hidden-small,
+	#homepage td.hidden-small {
+		display: none;
+	}
 }

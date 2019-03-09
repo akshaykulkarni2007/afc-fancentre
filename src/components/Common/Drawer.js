@@ -22,10 +22,18 @@ const styles = {
 	fullList: {
 		width: "auto"
 	},
+	listItem: {
+		padding: 0
+	},
+	linkBox: {
+		display: "flex",
+		flexGrow: 1,
+		padding: "1rem",
+		justifyContent: "space-around"
+	},
 	link: {
 		color: "#fe000c !important",
-		width: "100%",
-		paddingLeft: "56px"
+		width: "100%"
 	},
 	subLink: {
 		paddingLeft: "2.5rem"
@@ -37,19 +45,24 @@ class TemporaryDrawer extends Component {
 
 	itemsWithCollapse = (item, index) => (
 		<Aux key={item.title}>
-			<ListItem button onClick={() => this.props.handleCollapse(index)}>
-				<Link to={item.link} className={this.classes.link}>
-					{item.title}
-				</Link>
-				{this.props.collapse[index].open ? (
+			<ListItem
+				button
+				className={this.classes.listItem}
+				onClick={() => this.props.handleCollapse(index)}>
+				<span className={this.classes.linkBox}>
 					<Link to={item.link} className={this.classes.link}>
-						<ExpandLess />
+						{item.title}
 					</Link>
-				) : (
-					<Link to={item.link} className={this.classes.link}>
-						<ChevronRight />
-					</Link>
-				)}
+					{this.props.collapse[index].open ? (
+						<Link to={item.link} className={this.classes.link}>
+							<ExpandLess />
+						</Link>
+					) : (
+						<Link to={item.link} className={this.classes.link}>
+							<ChevronRight />
+						</Link>
+					)}
+				</span>
 			</ListItem>
 
 			{item.subItems.map(subitem => (
@@ -61,14 +74,20 @@ class TemporaryDrawer extends Component {
 					<List component="div" disablePadding>
 						<ListItem
 							button
-							className={[this.classes.nested, this.classes.subLink].join(" ")}
+							className={[
+								this.classes.nested,
+								this.classes.subLink,
+								this.classes.listItem
+							].join(" ")}
 							onClick={this.props.toggleDrawer("left", false)}>
-							<Link
-								to={subitem.link}
-								className={this.classes.link}
-								onClick={subitem.onClick}>
-								{subitem.title}
-							</Link>
+							<span className={this.classes.linkBox}>
+								<Link
+									to={subitem.link}
+									className={this.classes.link}
+									onClick={subitem.onClick}>
+									{subitem.title}
+								</Link>
+							</span>
 						</ListItem>
 					</List>
 				</Collapse>
@@ -97,32 +116,37 @@ class TemporaryDrawer extends Component {
 			<Aux>
 				<ListItem
 					button
+					className={this.classes.listItem}
 					onClick={this.props.toggleDrawer("left", false)}
-					style={{ paddingTop: "2rem", paddingBottom: "0.1rem" }}>
-					<Link to="/auth" className={this.classes.link}>
-						Login
-					</Link>
+					style={{ paddingTop: "1rem" }}>
+					<span className={this.classes.linkBox}>
+						<Link to="/auth" className={this.classes.link}>
+							Login
+						</Link>
+					</span>
 				</ListItem>
 			</Aux>
 		)
 
-		const menu = this.props.navItems.map(
-			(item, index) =>
-				!Array.isArray(item.subItems) ? (
-					<Aux key={item.title}>
-						{index === 0 ? <Divider /> : ""}
-						<ListItem
-							index={index}
-							button
-							onClick={this.props.toggleDrawer("left", false)}>
+		const menu = this.props.navItems.map((item, index) =>
+			!Array.isArray(item.subItems) ? (
+				<Aux key={item.title}>
+					{index === 0 ? <Divider /> : ""}
+					<ListItem
+						className={this.classes.listItem}
+						index={index}
+						button
+						onClick={this.props.toggleDrawer("left", false)}>
+						<span className={this.classes.linkBox}>
 							<Link to={item.link} className={this.classes.link}>
 								{item.title}
 							</Link>
-						</ListItem>
-					</Aux>
-				) : (
-					((index -= 1), this.itemsWithCollapse(item, index))
-				)
+						</span>
+					</ListItem>
+				</Aux>
+			) : (
+				((index -= 1), this.itemsWithCollapse(item, index))
+			)
 		)
 
 		const sideList = (

@@ -199,8 +199,8 @@ class Home extends Component {
 											<TableRow>
 												<TableCell>#</TableCell>
 												<TableCell>Team</TableCell>
-												<TableCell>Matches</TableCell>
-												<TableCell>+/-</TableCell>
+												<TableCell className="hidden-small">Matches</TableCell>
+												<TableCell className="hidden-small">+/-</TableCell>
 												<TableCell>Points</TableCell>
 											</TableRow>
 										</TableHead>
