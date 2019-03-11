@@ -96,8 +96,8 @@ class Home extends Component {
 				this.setState((state, props) => ({
 					banner: {
 						...this.state.banner,
-						title: res.data[0].title,
-						content: res.data[0].content
+						title: res.data.title,
+						content: res.data.content
 					}
 				}))
 			)
