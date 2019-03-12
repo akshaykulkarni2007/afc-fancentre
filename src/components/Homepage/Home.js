@@ -1,4 +1,5 @@
 import React, { Component } from "react"
+import imagePath from "../../config/staticPath"
 
 // redux and actions
 import { connect } from "react-redux"
@@ -139,7 +140,7 @@ class Home extends Component {
 				{/* News Banner */}
 				<section id="home-banner">
 					<Banner
-						img={"images/" + this.state.banner.image}
+						img={imagePath("images/" + this.state.banner.image)}
 						title={this.state.banner.title}
 						height="650px"
 						color="#fff"
