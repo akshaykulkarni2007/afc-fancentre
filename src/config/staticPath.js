@@ -1,6 +1,6 @@
 const imagePath = path => {
 	if (process.env.NODE_ENV === "production") {
-		return `${process.env.STATIC}/${path}`
+		return `https://afcfc-backend.herokuapp.com/${path}`
 	} else {
 		return `http://localhost:5000/${path}`
 	}
