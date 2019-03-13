@@ -2,9 +2,12 @@ import React, { Component } from "react"
 import { Link } from "react-router-dom"
 import { withRouter } from "react-router-dom"
 
+// redux
 import { connect } from "react-redux"
 import { logoutUser } from "../../actions/authActions"
 
+// custom components
+import LoggedInMenu from "./LoggedInMenu"
 import Drawer from "./Drawer"
 
 // Material
@@ -51,11 +54,6 @@ class Navigation extends Component {
 			{ title: "About", link: "/about", subItems: "" }
 		],
 		left: false,
-		collapse: [
-			{ title: "Club", open: false },
-			{ title: "Fans", open: false },
-			{ title: "Account", open: false }
-		],
 		dropDown: [
 			{ title: "Club", open: false },
 			{ title: "Fans", open: false },
@@ -105,13 +103,6 @@ class Navigation extends Component {
 		this.setState({
 			[side]: open
 		})
-	}
-
-	handleCollapse = index => {
-		const collapse = this.state.collapse
-		collapse[index].open = !collapse[index].open
-
-		this.setState({ collapse })
 	}
 
 	handleDropDown = index => {
@@ -166,18 +157,7 @@ class Navigation extends Component {
 	render() {
 		const authLinks = this.props.auth.isAuthenticated ? (
 			this.itemsWithDropdown(
-				{
-					title: this.props.auth.user.name,
-					link: "/",
-					subItems: [
-						{ title: "My Account", link: "/my-account" },
-						{
-							title: "Logout",
-							link: "",
-							onClick: this.logoutAction.bind(this)
-						}
-					]
-				},
+				LoggedInMenu(this.props.auth, this.logoutAction),
 				2
 			)
 		) : (
@@ -186,15 +166,14 @@ class Navigation extends Component {
 			</Link>
 		)
 
-		const menu = this.state.navItems.map(
-			(item, index) =>
-				!Array.isArray(item.subItems) ? (
-					<Link to={item.link} key={item.title} style={this.styles.navLink}>
-						{item.title}
-					</Link>
-				) : (
-					((index -= 1), this.itemsWithDropdown(item, index))
-				)
+		const menu = this.state.navItems.map((item, index) =>
+			!Array.isArray(item.subItems) ? (
+				<Link to={item.link} key={item.title} style={this.styles.navLink}>
+					{item.title}
+				</Link>
+			) : (
+				((index -= 1), this.itemsWithDropdown(item, index))
+			)
 		)
 
 		return (
@@ -202,13 +181,14 @@ class Navigation extends Component {
 				<Drawer
 					navItems={this.state.navItems}
 					isAuthenticated={this.props.auth.isAuthenticated}
-					user={this.props.auth.user}
+					user={this.props.auth}
 					logoutAction={this.logoutAction}
-					collapse={this.state.collapse}
+					collapse={this.state.dropDown}
 					left={this.state.left}
 					toggleDrawer={this.toggleDrawer}
-					handleCollapse={this.handleCollapse}
+					handleCollapse={this.handleDropDown}
 				/>
+
 				<AppBar position="static" style={this.styles.background}>
 					<Toolbar>
 						<Hidden lgUp>

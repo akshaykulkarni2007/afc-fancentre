@@ -22,6 +22,7 @@ a {
 	align-items: center;
 	justify-content: space-between;
 	text-align: center;
+	padding: 0 2rem;
 }
 
 .not-found img {

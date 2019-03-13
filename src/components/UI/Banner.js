@@ -1,33 +1,33 @@
 import React from "react"
 
-const Banner = props => {
+const Banner = ({ img, height, title, children, imgPosition, color }) => {
 	const styles = {
 		backgroundImg: {
-			backgroundImage: `url(${props.img})`,
-			height: props.height,
+			backgroundImage: `url(${img})`,
+			height: height,
 			width: 100 + "%",
 			backgroundRepeat: "no-repeat",
 			backgroundSize: "cover",
-			backgroundPosition: props.imgPosition
+			backgroundPosition: imgPosition
 		},
 		title: {
 			margin: 0,
 			padding: "5rem 2rem 2rem",
 			maxWidth: "500px",
-			color: props.color
+			color: color
 		},
 		content: {
 			margin: 0,
 			padding: "0 2rem 2rem",
 			maxWidth: "500px",
-			color: props.color
+			color: color
 		}
 	}
 
 	return (
 		<div className="banner-background" style={styles.backgroundImg}>
-			<h1 style={styles.title}>{props.title}</h1>
-			<h4 style={styles.content}>{props.children}</h4>
+			<h1 style={styles.title}>{title}</h1>
+			<h4 style={styles.content}>{children}</h4>
 		</div>
 	)
 }

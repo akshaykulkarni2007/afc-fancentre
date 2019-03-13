@@ -1,7 +1,8 @@
-import React, { Component } from "react"
+import React from "react"
 import { Link } from "react-router-dom"
-import PropTypes from "prop-types"
 
+// custom components
+import LoggedInMenu from "./LoggedInMenu"
 import Aux from "../HOC/Auxiliary"
 
 // Material
@@ -40,25 +41,25 @@ const styles = {
 	}
 }
 
-class TemporaryDrawer extends Component {
-	classes = this.props.classes
+const TemporaryDrawer = props => {
+	const classes = props.classes
 
-	itemsWithCollapse = (item, index) => (
+	const itemsWithCollapse = (item, index) => (
 		<Aux key={item.title}>
 			<ListItem
 				button
-				className={this.classes.listItem}
-				onClick={() => this.props.handleCollapse(index)}>
-				<span className={this.classes.linkBox}>
-					<Link to={item.link} className={this.classes.link}>
+				className={classes.listItem}
+				onClick={() => props.handleCollapse(index)}>
+				<span className={classes.linkBox}>
+					<Link to={item.link} className={classes.link}>
 						{item.title}
 					</Link>
-					{this.props.collapse[index].open ? (
-						<Link to={item.link} className={this.classes.link}>
+					{props.collapse[index].open ? (
+						<Link to={item.link} className={classes.link}>
 							<ExpandLess />
 						</Link>
 					) : (
-						<Link to={item.link} className={this.classes.link}>
+						<Link to={item.link} className={classes.link}>
 							<ChevronRight />
 						</Link>
 					)}
@@ -68,22 +69,22 @@ class TemporaryDrawer extends Component {
 			{item.subItems.map(subitem => (
 				<Collapse
 					key={subitem.title}
-					in={this.props.collapse[index].open}
+					in={props.collapse[index].open}
 					timeout="auto"
 					unmountOnExit>
 					<List component="div" disablePadding>
 						<ListItem
 							button
 							className={[
-								this.classes.nested,
-								this.classes.subLink,
-								this.classes.listItem
+								classes.nested,
+								classes.subLink,
+								classes.listItem
 							].join(" ")}
-							onClick={this.props.toggleDrawer("left", false)}>
-							<span className={this.classes.linkBox}>
+							onClick={props.toggleDrawer("left", false)}>
+							<span className={classes.linkBox}>
 								<Link
 									to={subitem.link}
-									className={this.classes.link}
+									className={classes.link}
 									onClick={subitem.onClick}>
 									{subitem.title}
 								</Link>
@@ -95,86 +96,64 @@ class TemporaryDrawer extends Component {
 		</Aux>
 	)
 
-	render() {
-		const authLinks = this.props.isAuthenticated ? (
-			this.itemsWithCollapse(
-				{
-					title: this.props.user.name,
-					link: "/",
-					subItems: [
-						{ title: "My Account", link: "/my-account" },
-						{
-							title: "Logout",
-							link: "",
-							onClick: this.props.logoutAction.bind(this)
-						}
-					]
-				},
-				2
-			)
-		) : (
-			<Aux>
+	const authLinks = props.isAuthenticated ? (
+		itemsWithCollapse(LoggedInMenu(props.user, props.logoutAction), 2)
+	) : (
+		<Aux>
+			<ListItem
+				button
+				className={classes.listItem}
+				onClick={props.toggleDrawer("left", false)}
+				style={{ paddingTop: "1rem" }}>
+				<span className={classes.linkBox}>
+					<Link to="/auth" className={classes.link}>
+						Login
+					</Link>
+				</span>
+			</ListItem>
+		</Aux>
+	)
+
+	const menu = props.navItems.map((item, index) =>
+		!Array.isArray(item.subItems) ? (
+			<Aux key={item.title}>
+				{index === 0 ? <Divider /> : ""}
 				<ListItem
+					className={classes.listItem}
+					index={index}
 					button
-					className={this.classes.listItem}
-					onClick={this.props.toggleDrawer("left", false)}
-					style={{ paddingTop: "1rem" }}>
-					<span className={this.classes.linkBox}>
-						<Link to="/auth" className={this.classes.link}>
-							Login
+					onClick={props.toggleDrawer("left", false)}>
+					<span className={classes.linkBox}>
+						<Link to={item.link} className={classes.link}>
+							{item.title}
 						</Link>
 					</span>
 				</ListItem>
 			</Aux>
+		) : (
+			((index -= 1), itemsWithCollapse(item, index))
 		)
+	)
 
-		const menu = this.props.navItems.map((item, index) =>
-			!Array.isArray(item.subItems) ? (
-				<Aux key={item.title}>
-					{index === 0 ? <Divider /> : ""}
-					<ListItem
-						className={this.classes.listItem}
-						index={index}
-						button
-						onClick={this.props.toggleDrawer("left", false)}>
-						<span className={this.classes.linkBox}>
-							<Link to={item.link} className={this.classes.link}>
-								{item.title}
-							</Link>
-						</span>
-					</ListItem>
-				</Aux>
-			) : (
-				((index -= 1), this.itemsWithCollapse(item, index))
-			)
-		)
+	const sideList = (
+		<div className={classes.list}>
+			<List component="nav">{menu}</List>
+		</div>
+	)
 
-		const sideList = (
-			<div className={this.classes.list}>
-				<List component="nav">{menu}</List>
-			</div>
-		)
-
-		return (
-			<div id="drawer">
-				<Drawer
-					open={this.props.left}
-					onClose={this.props.toggleDrawer("left", false)}>
-					<div
-						tabIndex={0}
-						role="button"
-						onKeyDown={this.props.toggleDrawer("left", false)}>
-						{authLinks}
-						{sideList}
-					</div>
-				</Drawer>
-			</div>
-		)
-	}
-}
-
-TemporaryDrawer.propTypes = {
-	classes: PropTypes.object.isRequired
+	return (
+		<div id="drawer">
+			<Drawer open={props.left} onClose={props.toggleDrawer("left", false)}>
+				<div
+					tabIndex={0}
+					role="button"
+					onKeyDown={props.toggleDrawer("left", false)}>
+					{authLinks}
+					{sideList}
+				</div>
+			</Drawer>
+		</div>
+	)
 }
 
 export default withStyles(styles)(TemporaryDrawer)
