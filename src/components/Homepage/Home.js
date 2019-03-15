@@ -140,7 +140,7 @@ class Home extends Component {
 				{/* News Banner */}
 				<section id="home-banner">
 					<Banner
-						img={imagePath("images/" + this.state.banner.image)}
+						img={imagePath(`images/${this.state.banner.image}`)}
 						title={this.state.banner.title}
 						height="650px"
 						color="#fff"
