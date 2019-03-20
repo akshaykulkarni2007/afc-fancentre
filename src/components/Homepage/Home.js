@@ -144,7 +144,10 @@ class Home extends Component {
 						title={this.state.banner.title}
 						height="650px"
 						color="#fff"
-						imgPosition="">
+						imgPosition="0 -100px"
+						btn={true}
+						btnText="read more"
+						btnLink="/news/1">
 						{this.state.banner.content}
 					</Banner>
 				</section>

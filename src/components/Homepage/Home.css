@@ -79,9 +79,9 @@ h5 {
 }
 
 @media (max-width: 960px) {
-	/* .banner-background {
-		background-position: center;
-	} */
+	.banner-background {
+		background-position: 0 !important;
+	}
 
 	#homepage .fixtures-box {
 		border: none;

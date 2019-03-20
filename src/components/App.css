@@ -63,8 +63,14 @@ label.form-label {
 	box-shadow: none !important;
 }
 .btn-primary {
+	border: 1px solid #fe000c;
 	background: #fe000c !important;
 	color: #fff !important;
+}
+.btn-outline-primary {
+	border: 1px solid #fe000c !important;
+	background: transparent !important;
+	color: #fe000c !important;
 }
 
 @media (max-width: 1024px) {
