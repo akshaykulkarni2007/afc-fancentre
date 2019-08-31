@@ -12,7 +12,7 @@ import {
 } from "@material-ui/core"
 
 // custom components
-import DemoCarousel from "../../UI/Carousel"
+import ImageCarousel from "../../UI/Carousel"
 import Axios from "../../HOC/Axios"
 
 const styles = theme => ({
@@ -40,7 +40,7 @@ class PlayerDetails extends Component {
 		const { classes } = this.props
 
 		const galleryCarousel = this.state.player.gallery ? (
-			<DemoCarousel
+			<ImageCarousel
 				config={{
 					width: "50%",
 					height: "100px",
@@ -66,11 +66,13 @@ class PlayerDetails extends Component {
 						</Grid>
 
 						<Grid item xs={12} lg={8}>
-							<img
-								src={imagePath(`images/${this.state.player.dp}.jpg`)}
-								alt={this.state.player.name}
-								className={classes.image}
-							/>
+							{this.state.player.dp && (
+								<img
+									src={imagePath(`images/${this.state.player.dp}.jpg`)}
+									alt={this.state.player.name}
+									className={classes.image}
+								/>
+							)}
 						</Grid>
 						<Grid item xs={12} lg={4}>
 							<Table style={{ maxWidth: `100%` }}>
@@ -109,6 +111,11 @@ class PlayerDetails extends Component {
 							</Table>
 						</Grid>
 
+						<div
+							dangerouslySetInnerHTML={{
+								__html: this.state.player.description
+							}}
+						/>
 						{galleryCarousel}
 					</Grid>
 				</Grid>

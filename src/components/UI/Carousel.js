@@ -6,7 +6,7 @@ import "react-responsive-carousel/lib/styles/carousel.min.css"
 // custom components
 import { Carousel } from "react-responsive-carousel"
 
-class DemoCarousel extends Component {
+class ImageCarousel extends Component {
 	items = this.props.images.map(item => (
 		<div key={Math.random()}>
 			<img src={imagePath(`images/${item}`)} alt={item} />
@@ -19,4 +19,4 @@ class DemoCarousel extends Component {
 	}
 }
 
-export default DemoCarousel
+export default ImageCarousel

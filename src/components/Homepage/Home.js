@@ -117,7 +117,9 @@ class Home extends Component {
 		// })
 		// if (index !== -1) this.state.playerStats.splice(index, 1)
 
-		const statGridItems = this.props.players.topPlayers.map(player => ({
+		const existingStats = this.props.players.topPlayers.filter(el => el != null)
+
+		const statGridItems = existingStats.map(player => ({
 			key: player.number + player.statName,
 			subHeader: `${player.statName} (${player.statNumber})`,
 			image: player.dp,
@@ -164,12 +166,8 @@ class Home extends Component {
 								<h4>{this.getDate(this.state.fixtures.previous.date)}</h4>
 								<h2>
 									{this.prevMatchVenueType === "home"
-										? `Arsenal ${this.state.fixtures.previous.scoreline} ${
-												this.state.fixtures.previous.opponent
-										  }`
-										: `${this.state.fixtures.previous.opponent} ${
-												this.state.fixtures.previous.scoreline
-										  } Arsenal`}
+										? `Arsenal ${this.state.fixtures.previous.scoreline} ${this.state.fixtures.previous.opponent}`
+										: `${this.state.fixtures.previous.opponent} ${this.state.fixtures.previous.scoreline} Arsenal`}
 								</h2>
 								<h5>
 									{this.state.fixtures.previous.tournament} /{" "}
@@ -220,13 +218,15 @@ class Home extends Component {
 				</section>
 
 				{/* Stats */}
-				<section id="home-stats">
-					<Typography variant="display2" className="section-title">
-						Season So Far
-					</Typography>
+				{statGridItems.length > 0 && (
+					<section id="home-stats">
+						<Typography variant="display2" className="section-title">
+							Season So Far
+						</Typography>
 
-					<ImageGrid content={statGridItems} cols={5} />
-				</section>
+						<ImageGrid content={statGridItems} cols={5} />
+					</section>
+				)}
 
 				{/* Social */}
 			</div>
