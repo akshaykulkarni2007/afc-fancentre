@@ -1,3 +1,19 @@
+"client": "npm start --prefix client",
+"clientinstall": "npm install --prefix client",
+"dev": "concurrently \"npm run server\" \"npm run client\"",
+"heroku-postbuild": "NPM_CONFIG_PRODUCTION=false npm install --prefix client && npm run build --prefix client"
+
+if (process.env.NODE_ENV === "production") {
+	app.use(express.static("afc-fancentre/build"))
+	app.get("*", (req, res) => {
+		res.sendFile(
+			path.resolve(__dirname, "afc-fancentre", "build", "index.html")
+		)
+	})
+} else {
+	app.use(express.static(path.join(__dirname, "public")))
+}
+
 <Grid container spacing={0}>
 							<Grid item xs={12} md={3} className="stats-box">
 								<h2>Top Scorer</h2>

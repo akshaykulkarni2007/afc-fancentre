@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import imagePath from "../../config/staticPath"
+import staticPath from "../../config/staticPath"
 
 import "react-responsive-carousel/lib/styles/carousel.min.css"
 
@@ -9,7 +9,7 @@ import { Carousel } from "react-responsive-carousel"
 class ImageCarousel extends Component {
 	items = this.props.images.map(item => (
 		<div key={Math.random()}>
-			<img src={imagePath(`images/${item}`)} alt={item} />
+			<img src={`${staticPath}/${item}`} alt={item} />
 			{/* <p className="legend">Legend 1</p> */}
 		</div>
 	))

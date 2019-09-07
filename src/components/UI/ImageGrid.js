@@ -1,5 +1,5 @@
 import React from "react"
-import imagePath from "../../config/staticPath"
+import staticPath from "../../config/staticPath"
 
 // router
 import { Link } from "react-router-dom"
@@ -60,10 +60,7 @@ const ImageGrid = props => {
 						<ListSubheader component="div" className="stat-type">
 							<h2>{item.subHeader}</h2>
 						</ListSubheader>
-						<img
-							src={imagePath("images/" + item.image + ".jpg")}
-							alt={item.name}
-						/>
+						<img src={`${staticPath}/${item.image}.jpg`} alt={item.name} />
 						<Link to={`/club/player/${item.image}`}>
 							<GridListTileBar
 								title={<span className={classes.title}>{item.title}</span>}

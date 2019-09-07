@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import imagePath from "../../../config/staticPath"
+import staticPath from "../../../config/staticPath"
 
 // Material
 import {
@@ -68,7 +68,7 @@ class PlayerDetails extends Component {
 						<Grid item xs={12} lg={8}>
 							{this.state.player.dp && (
 								<img
-									src={imagePath(`images/${this.state.player.dp}.jpg`)}
+									src={`${staticPath}/${this.state.player.dp}.jpg`}
 									alt={this.state.player.name}
 									className={classes.image}
 								/>
